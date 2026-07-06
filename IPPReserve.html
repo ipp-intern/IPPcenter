@@ -441,15 +441,14 @@ body {
 }
 
 .admin-slot-cell {
-    padding: 8px;
+    padding: 6px;
     border: 2px solid #e0e0e0;
     border-radius: 6px;
     min-height: 60px;
+    max-height: 80px;
+    overflow-y: auto;
     background: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    display: block;
     font-size: 11px;
 }
 
@@ -508,6 +507,11 @@ body {
                     <li>원하는 날짜와 시간을 선택하고 정보를 입력하세요.</li>
                     <li>노쇼(No-Show)는 절대 금지입니다.</li>
                     <li>일정 변경이 필요하면 최소 하루 전에 취소하세요.</li>
+                    <li><strong>상담 장소는 다향관 235호 회의실입니다.</strong></li>
+                    <li>특이사항이 있는 경우, 아래 연락처로 전화 바랍니다.</li>
+                    <div style="margin-left:2px; margin-top:-2px;">
+                         <strong>심재성(02-2260-3623) | 심관식(02-2260-3624) | 강용근(02-2260-3622) | 강민아(02-2260-3638)</strong>
+                    </div>
                 </ul>
             </div>
 
@@ -1307,28 +1311,36 @@ function initAdminSchedule() {
                 cell.classList.add("unavailable");
                 cell.textContent = "휴무";
             } else {
-                let booking;
+                let bookings;
 
                 if (currentAdmin.id === "ipp") {
-                    booking = bookingsCache.find(b =>
+                    bookings = bookingsCache.filter(b =>
                         b.date === dateStr &&
                         b.time === time
                     );
                 } else {
-                    booking = bookingsCache.find(b =>
+                    bookings = bookingsCache.filter(b =>
                         b.date === dateStr &&
                         b.time === time &&
                         b.professor === currentAdmin.name
                     );
                 }
 
-                if (booking) {
+                if (bookings.length > 0) {
                     cell.classList.add("booked");
-                    cell.innerHTML = `
-                        <div style="font-weight:600;color:#667eea;">${booking.studentName}</div>
-                        <div style="font-size:10px;color:#666;">${booking.studentId}</div>
-                        <div style="font-size:10px;color:#666;">${booking.professor || ""}</div>
-                    `;
+
+                    cell.innerHTML = bookings.map(b => `
+                        <div style="
+                            border-bottom: 1px solid #c9d8ff;
+                            padding: 3px 0;
+                            width: 100%;
+                            text-align: center;
+                        ">
+                            <div style="font-weight:600;color:#667eea;">${b.studentName}</div>
+                            <div style="font-size:10px;color:#666;">${b.studentId}</div>
+                            <div style="font-size:10px;color:#666;">${b.professor || ""}</div>
+                        </div>
+                    `).join("");
                 } else {
                     let unavailable = false;
 
