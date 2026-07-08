@@ -748,6 +748,7 @@ import {
     addDoc,
     getDocs,
     deleteDoc,
+    updateDoc,
     doc,
     query,
     where,
@@ -772,6 +773,7 @@ window.collection = collection;
 window.addDoc = addDoc;
 window.getDocs = getDocs;
 window.deleteDoc = deleteDoc;
+window.updateDoc = updateDoc;
 window.doc = doc;
 window.query = query;
 window.where = where;
@@ -860,7 +862,8 @@ async function submitBooking() {
     const alreadyBooked = bookingsCache.some(b =>
         b.professor === professor &&
         b.date === selectedSlot.date &&
-        b.time === selectedSlot.time
+        b.time === selectedSlot.time &&
+        b.status !== "rejected"
     );
 
     if (alreadyBooked) {
@@ -879,6 +882,7 @@ async function submitBooking() {
             consultTypes,
             date: selectedSlot.date,
             time: selectedSlot.time,
+            status: "pending",
             createdAt: new Date().toISOString()
         });
 
@@ -923,16 +927,22 @@ function searchMyBookings() {
 
     list.innerHTML = myBookings
         .sort((a, b) => (a.date + a.time).localeCompare(b.date + b.time))
-        .map(b => `
-            <div class="booking-item">
-                <div class="booking-details">
-                    <strong>${b.professor} 교수님</strong>
-                    <span>${b.date} ${b.time} | ${b.studentName} | ${b.major}</span><br>
-                    <span>상담 유형: ${Array.isArray(b.consultTypes) ? b.consultTypes.join(", ") : "미입력"}</span>
+        .map(b => {
+            const statusLabel = b.status === "approved" ? "✅ 승인완료"
+                : b.status === "rejected" ? "❌ 거절됨"
+                : "⏳ 승인대기중";
+
+            return `
+                <div class="booking-item">
+                    <div class="booking-details">
+                        <strong>${b.professor} 교수님</strong> <span style="color:#667eea;">[${statusLabel}]</span>
+                        <span>${b.date} ${b.time} | ${b.studentName} | ${b.major}</span><br>
+                        <span>상담 유형: ${Array.isArray(b.consultTypes) ? b.consultTypes.join(", ") : "미입력"}</span>
+                    </div>
+                    <button class="cancel-btn" onclick="cancelBooking('${b.id}')">취소</button>
                 </div>
-                <button class="cancel-btn" onclick="cancelBooking('${b.id}')">취소</button>
-            </div>
-        `).join("");
+            `;
+        }).join("");
 }
 
 async function cancelBooking(id) {
@@ -1019,7 +1029,14 @@ function loadUnavailableList() {
             </div>
         `).join("");
 }
-
+async function updateBookingStatus(id, status) {
+    try {
+        await window.updateDoc(window.doc(window.db, "bookings", id), { status });
+        showAdminAlert("success", status === "approved" ? "예약이 승인되었습니다." : "예약이 거절되었습니다.");
+    } catch (error) {
+        showAdminAlert("error", "처리 실패: " + error.message);
+    }
+}
 async function deleteUnavailableTime(id) {
     if (!confirm("삭제하시겠습니까?")) return;
 
@@ -1055,20 +1072,35 @@ function loadAdminBookings() {
     }
 
     list.innerHTML = adminBookings
+    list.innerHTML = adminBookings
         .sort((a, b) => {
             const professorCompare = (a.professor || "").localeCompare(b.professor || "");
             if (professorCompare !== 0) return professorCompare;
             return (a.time || "").localeCompare(b.time || "");
         })
-        .map(b => `
-            <div class="booking-item">
-                <div class="booking-details">
-                    <strong>${b.time} | ${b.professor} 교수님</strong>
-                    <span>${b.studentName} (${b.studentId}) | ${b.major} | ${b.phone}</span><br>
-                    <span>상담 유형: ${Array.isArray(b.consultTypes) ? b.consultTypes.join(", ") : "미입력"}</span>
+        .map(b => {
+            const statusLabel = b.status === "approved" ? "✅ 승인완료"
+                : b.status === "rejected" ? "❌ 거절됨"
+                : "⏳ 승인대기중";
+
+            const actionButtons = b.status === "pending"
+                ? `
+                    <button class="add-btn" onclick="updateBookingStatus('${b.id}', 'approved')">승인</button>
+                    <button class="delete-btn" onclick="updateBookingStatus('${b.id}', 'rejected')">거절</button>
+                `
+                : "";
+
+            return `
+                <div class="booking-item">
+                    <div class="booking-details">
+                        <strong>${b.time} | ${b.professor} 교수님</strong> <span style="color:#667eea;">[${statusLabel}]</span>
+                        <span>${b.studentName} (${b.studentId}) | ${b.major} | ${b.phone}</span><br>
+                        <span>상담 유형: ${Array.isArray(b.consultTypes) ? b.consultTypes.join(", ") : "미입력"}</span>
+                    </div>
+                    <div style="display:flex;gap:8px;">${actionButtons}</div>
                 </div>
-            </div>
-        `).join("");
+            `;
+        }).join("");
 }
 
 function downloadWeeklyCSV() {
@@ -1275,12 +1307,18 @@ function initSchedule() {
                 const booking = bookingsCache.find(b =>
                     b.date === dateStr &&
                     b.time === time &&
-                    b.professor === professor
+                    b.professor === professor &&
+                    b.status !== "rejected"
                 );
 
                 if (booking) {
-                    cell.classList.add("booked");
-                    cell.textContent = "예약완료";
+                    if (booking.status === "approved") {
+                        cell.classList.add("booked");
+                        cell.textContent = "예약완료";
+                    } else {
+                        cell.classList.add("unavailable");
+                        cell.textContent = "승인대기중";
+                    }
                 } else {
                     const unavailable = unavailableCache.some(u =>
                         u.professor === professor &&
@@ -1343,18 +1381,21 @@ function initAdminSchedule() {
                 if (bookings.length > 0) {
                     cell.classList.add("booked");
 
-                    cell.innerHTML = bookings.map(b => `
-                        <div style="
-                            border-bottom: 1px solid #c9d8ff;
-                            padding: 3px 0;
-                            width: 100%;
-                            text-align: center;
-                        ">
-                            <div style="font-weight:600;color:#667eea;">${b.studentName}</div>
-                            <div style="font-size:10px;color:#666;">${b.studentId}</div>
-                            <div style="font-size:10px;color:#666;">${b.professor || ""}</div>
-                        </div>
-                    `).join("");
+                    cell.innerHTML = bookings.map(b => {
+                        const statusLabel = b.status === "approved" ? "✅" : b.status === "rejected" ? "❌" : "⏳";
+                        return `
+                            <div style="
+                                border-bottom: 1px solid #c9d8ff;
+                                padding: 3px 0;
+                                width: 100%;
+                                text-align: center;
+                            ">
+                                <div style="font-weight:600;color:#667eea;">${statusLabel} ${b.studentName}</div>
+                                <div style="font-size:10px;color:#666;">${b.studentId}</div>
+                                <div style="font-size:10px;color:#666;">${b.professor || ""}</div>
+                            </div>
+                        `;
+                    }).join("");
                 } else {
                     let unavailable = false;
 
