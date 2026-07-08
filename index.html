@@ -1061,7 +1061,7 @@ async function addUnavailableTime() {
         return;
     }
 
-    const startIdx = timeSlots.indexOf(startTime);
+const startIdx = timeSlots.indexOf(startTime);
     const endIdx = getEndIndex(endTime);
 
     if (startIdx === -1 || endIdx === -1 || startIdx > endIdx) {
@@ -1150,13 +1150,13 @@ async function addRecurringUnavailable() {
     const startIdx = timeSlots.indexOf(startTime);
     const endIdx = getEndIndex(endTime);
 
-    if (startIdx === -1 || endIdx === -1 || startIdx >= endIdx) {
+    if (startIdx === -1 || endIdx === -1 || startIdx > endIdx) {
         showAdminAlert("error", "종료 시간은 시작 시간 이후여야 합니다.");
         return;
     }
 
     const times = [];
-    for (let i = startIdx; i < endIdx; i++) {
+    for (let i = startIdx; i <= endIdx; i++) {
         times.push(timeSlots[i]);
     }
 
