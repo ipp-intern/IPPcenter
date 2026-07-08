@@ -861,7 +861,9 @@ let adminWeekStart = getMonday(new Date());
 
 const timeSlots = ["09:00", "09:30", "10:00", "10:30", "11:00", "11:30","13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30"];
 
-function addMinutes(timeStr, minutes) {
+const holidays = ["2026-07-17"];
+
+    function addMinutes(timeStr, minutes) {
     const [h, m] = timeStr.split(":").map(Number);
     const total = h * 60 + m + minutes;
     const hh = String(Math.floor(total / 60)).padStart(2, "0");
@@ -1464,9 +1466,9 @@ function initSchedule() {
             const cell = document.createElement("div");
             cell.className = "slot-cell";
 
-            if (day >= 5) {
+            if (day >= 5 || holidays.includes(dateStr)) {
                 cell.classList.add("unavailable");
-                cell.textContent = "휴무";
+                cell.textContent = holidays.includes(dateStr) ? "공휴일" : "휴무";
             } else {
                 const booking = bookingsCache.find(b =>
                     b.date === dateStr &&
@@ -1531,9 +1533,9 @@ function initAdminSchedule() {
             const cell = document.createElement("div");
             cell.className = "admin-slot-cell";
 
-            if (day >= 5) {
+            if (day >= 5 || holidays.includes(dateStr)) {
                 cell.classList.add("unavailable");
-                cell.textContent = "휴무";
+                cell.textContent = holidays.includes(dateStr) ? "공휴일" : "휴무";
             } else {
                 let bookings;
 
