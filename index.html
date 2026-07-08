@@ -698,6 +698,67 @@ body {
             </div>
 
             <div class="admin-section">
+                <h4>🔁 정기 불가 시간 (요일 반복)</h4>
+                <div id="recurringAlert" class="alert"></div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>요일</label>
+                        <select id="recurringDay">
+                            <option value="0">월요일</option>
+                            <option value="1">화요일</option>
+                            <option value="2">수요일</option>
+                            <option value="3">목요일</option>
+                            <option value="4">금요일</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>시작 시간</label>
+                        <select id="recurringStartTime">
+                            <option value="09:00">09:00</option>
+                            <option value="09:30">09:30</option>
+                            <option value="10:00">10:00</option>
+                            <option value="10:30">10:30</option>
+                            <option value="11:00">11:00</option>
+                            <option value="11:30">11:30</option>
+                            <option value="13:00">13:00</option>
+                            <option value="13:30">13:30</option>
+                            <option value="14:00">14:00</option>
+                            <option value="14:30">14:30</option>
+                            <option value="15:00">15:00</option>
+                            <option value="15:30">15:30</option>
+                            <option value="16:00">16:00</option>
+                            <option value="16:30">16:30</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>종료 시간</label>
+                        <select id="recurringEndTime">
+                            <option value="09:30">09:30</option>
+                            <option value="10:00">10:00</option>
+                            <option value="10:30">10:30</option>
+                            <option value="11:00">11:00</option>
+                            <option value="11:30">11:30</option>
+                            <option value="12:00">12:00</option>
+                            <option value="13:30">13:30</option>
+                            <option value="14:00">14:00</option>
+                            <option value="14:30">14:30</option>
+                            <option value="15:00">15:00</option>
+                            <option value="15:30">15:30</option>
+                            <option value="16:00">16:00</option>
+                            <option value="16:30">16:30</option>
+                            <option value="17:00">17:00</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button class="add-btn" onclick="addRecurringUnavailable()">➕ 정기 불가 시간 추가</button>
+                <div id="recurringUnavailableList" style="margin-top:20px;"></div>
+            </div>
+
+            <div class="admin-section">
                 <h4>📅 주간 예약 현황</h4>
 
                 <div class="calendar-container">
@@ -801,6 +862,7 @@ const timeSlots = ["09:00", "09:30", "10:00", "10:30", "11:00", "11:30","13:00",
 
 let bookingsCache = [];
 let unavailableCache = [];
+let recurringUnavailableCache = [];
 
 function getMonday(date) {
     const d = new Date(date);
@@ -836,6 +898,15 @@ function initRealtimeListeners() {
         if (currentAdmin) {
             initAdminSchedule();
             loadUnavailableList();
+        }
+    });
+
+    window.onSnapshot(window.collection(window.db, "recurringUnavailable"), snapshot => {
+        recurringUnavailableCache = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+        initSchedule();
+        if (currentAdmin) {
+            initAdminSchedule();
+            loadRecurringUnavailableList();
         }
     });
 }
@@ -1048,6 +1119,85 @@ async function deleteUnavailableTime(id) {
     }
 }
 
+async function addRecurringUnavailable() {
+    if (!currentAdmin) return;
+
+    if (currentAdmin.id === "ipp") {
+        showAdminAlert("error", "행정팀 계정은 정기 불가 시간을 등록할 수 없습니다.");
+        return;
+    }
+
+    const dayOfWeek = parseInt(document.getElementById("recurringDay").value, 10);
+    const startTime = document.getElementById("recurringStartTime").value;
+    const endTime = document.getElementById("recurringEndTime").value;
+
+    const startIdx = timeSlots.indexOf(startTime);
+    const endIdx = timeSlots.indexOf(endTime);
+
+    if (startIdx === -1 || endIdx === -1 || startIdx >= endIdx) {
+        showAdminAlert("error", "종료 시간은 시작 시간 이후여야 합니다.");
+        return;
+    }
+
+    const times = [];
+    for (let i = startIdx; i < endIdx; i++) {
+        times.push(timeSlots[i]);
+    }
+
+    try {
+        await window.addDoc(window.collection(window.db, "recurringUnavailable"), {
+            professor: currentAdmin.name,
+            dayOfWeek,
+            times,
+            startTime,
+            endTime,
+            createdAt: new Date().toISOString()
+        });
+
+        showAdminAlert("success", "정기 불가 시간이 등록되었습니다.");
+    } catch (error) {
+        showAdminAlert("error", "등록 실패: " + error.message);
+    }
+}
+
+function loadRecurringUnavailableList() {
+    if (!currentAdmin) return;
+
+    const list = document.getElementById("recurringUnavailableList");
+    const dayNames = ["월", "화", "수", "목", "금"];
+
+    if (currentAdmin.id === "ipp") {
+        list.innerHTML = '<p style="text-align:center;color:#999;">행정팀 계정은 대상이 아닙니다.</p>';
+        return;
+    }
+
+    const myRecurring = recurringUnavailableCache.filter(r => r.professor === currentAdmin.name);
+
+    if (myRecurring.length === 0) {
+        list.innerHTML = '<p style="text-align:center;color:#999;">등록된 정기 불가 시간이 없습니다.</p>';
+        return;
+    }
+
+    list.innerHTML = myRecurring
+        .sort((a, b) => (a.dayOfWeek - b.dayOfWeek) || a.startTime.localeCompare(b.startTime))
+        .map(r => `
+            <div class="unavailable-item">
+                <span><strong>매주 ${dayNames[r.dayOfWeek]}요일</strong> ${r.startTime}~${r.endTime}</span>
+                <button class="delete-btn" onclick="deleteRecurringUnavailable('${r.id}')">삭제</button>
+            </div>
+        `).join("");
+}
+
+async function deleteRecurringUnavailable(id) {
+    if (!confirm("삭제하시겠습니까?")) return;
+
+    try {
+        await window.deleteDoc(window.doc(window.db, "recurringUnavailable", id));
+        showAdminAlert("success", "삭제되었습니다.");
+    } catch (error) {
+        showAdminAlert("error", "삭제 실패: " + error.message);
+    }
+}
 function loadAdminBookings() {
     if (!currentAdmin) return;
 
@@ -1320,13 +1470,21 @@ function initSchedule() {
                         cell.textContent = "승인대기중";
                     }
                 } else {
+                    const jsDay = date.getDay();
+                    const dayOfWeek = jsDay === 0 ? 6 : jsDay - 1;
+
                     const unavailable = unavailableCache.some(u =>
                         u.professor === professor &&
                         u.date === dateStr &&
                         Array.isArray(u.times) &&
                         u.times.includes(time)
+                    ) || recurringUnavailableCache.some(r =>
+                        r.professor === professor &&
+                        r.dayOfWeek === dayOfWeek &&
+                        Array.isArray(r.times) &&
+                        r.times.includes(time)
                     );
-
+                    
                     if (unavailable) {
                         cell.classList.add("unavailable");
                         cell.textContent = "불가";
@@ -1400,11 +1558,19 @@ function initAdminSchedule() {
                     let unavailable = false;
 
                     if (currentAdmin.id !== "ipp") {
+                        const jsDay = date.getDay();
+                        const dayOfWeek = jsDay === 0 ? 6 : jsDay - 1;
+
                         unavailable = unavailableCache.some(u =>
                             u.professor === currentAdmin.name &&
                             u.date === dateStr &&
                             Array.isArray(u.times) &&
                             u.times.includes(time)
+                        ) || recurringUnavailableCache.some(r =>
+                            r.professor === currentAdmin.name &&
+                            r.dayOfWeek === dayOfWeek &&
+                            Array.isArray(r.times) &&
+                            r.times.includes(time)
                         );
                     }
 
@@ -1467,6 +1633,7 @@ function adminLogin() {
     updateAdminWeekHeader();
     initAdminSchedule();
     loadUnavailableList();
+    loadRecurringUnavailableList();
 
     const today = getLocalDateString(new Date());
     document.getElementById("adminDate").value = today;
