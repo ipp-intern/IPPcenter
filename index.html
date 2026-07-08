@@ -326,6 +326,16 @@ body {
     cursor: pointer;
 }
 
+.action-btn {
+    width: 70px;
+    height: 36px;
+    padding: 0;
+    margin-top: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .alert {
     padding: 15px;
     border-radius: 8px;
@@ -390,13 +400,13 @@ body {
 
 .cancel-btn,
 .delete-btn {
-    padding: 8px 15px;
+    padding: 12px 15px;
     background: #ff6b6b;
     color: white;
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: 2px;
 }
 
 .login-container {
@@ -462,6 +472,86 @@ body {
     color: #999;
 }
 
+.booking-complete-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 20px;
+}
+
+.booking-complete-box {
+    background: white;
+    width: min(520px, 100%);
+    border-radius: 18px;
+    padding: 30px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+    text-align: center;
+    animation: popIn 0.25s ease-out;
+}
+
+.booking-complete-box h2 {
+    color: #667eea;
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.booking-complete-info {
+    background: #f8f9ff;
+    border: 2px solid #d9defd;
+    border-radius: 12px;
+    padding: 18px;
+    margin: 18px 0;
+    text-align: left;
+    line-height: 1.8;
+    color: #333;
+}
+
+.booking-complete-notice {
+    color: #555;
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.modal-close-btn {
+    width: 100%;
+    padding: 13px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.rejection-reason-input {
+    width: 220px;
+    padding: 8px 10px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 13px;
+}
+
+.rejection-reason-box {
+    margin-top: 8px;
+    padding: 10px;
+    background: #fff3f3;
+    border-left: 4px solid #ff6b6b;
+    color: #721c24;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+@keyframes popIn {
+    from { transform: scale(0.92); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
 @media (max-width: 768px) {
     body {
         padding: 10px;
@@ -503,7 +593,7 @@ body {
                 <h4>📢 예약 전 필독사항</h4>
                 <ul>
                     <li>nDRIMS 현장실습 기업 운영계획서에서 현장실습 담당교수를 확인하세요.</li>
-                    <li>해당 기업이 없으면 공대 계열은 심재성/강용근 교수, 바이오/공대 계열은 강민아 교수, 비공대 계열은 심관식 교수를 추천합니다.</li>
+                    <li>해당 기업이 없으면 공대 계열은 심재성/강용근 교수, 비공대 계열은 심관식/강민아 교수를 추천합니다.</li>
                     <li>원하는 날짜와 시간을 선택하고 정보를 입력하세요.</li>
                     <li><strong>예약 신청 후에는 담당 교수님의 승인이 완료되어야 최종 확정됩니다.</strong></li>
                     <li>노쇼(No-Show)는 절대 금지입니다.</li>
@@ -777,7 +867,7 @@ body {
             </div>
 
             <div class="admin-section">
-                <h4>📋 날짜별 상세 조회</h4>
+                <h4>📋 전체 예약 목록 / 날짜별 상세 조회</h4>
 
                 <div style="display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;">
                     <button class="add-btn" onclick="downloadWeeklyCSV()">
@@ -790,15 +880,28 @@ body {
                 </div>
 
                 <div class="form-group">
-                    <label>날짜 선택</label>
+                    <label>날짜 선택 (비워두면 전체 예약 표시)</label>
                     <input type="date" id="adminDate" onchange="loadAdminBookings()">
+                    <button class="add-btn" onclick="showAllAdminBookings()" style="margin-top:10px;">전체 예약 목록 보기</button>
                 </div>
 
                 <div id="adminBookingsList" class="booking-list" style="margin-top:20px;">
-                    <p style="text-align:center;color:#999;">날짜를 선택하세요.</p>
+                    <p style="text-align:center;color:#999;">전체 예약 목록 또는 날짜를 선택하세요.</p>
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
+<div id="bookingCompleteModal" class="booking-complete-modal">
+    <div class="booking-complete-box">
+        <h2>✅ 예약완료!</h2>
+        <div id="bookingCompleteInfo" class="booking-complete-info"></div>
+        <div class="booking-complete-notice">
+            담당 교수님의 승인이 완료되어야 최종 확정됩니다.<br>
+            승인 여부 또는 거절 사유는 <strong>&lt;내 예약 확인&gt;</strong> 페이지에서 확인하세요.
+        </div>
+        <button class="modal-close-btn" onclick="closeBookingCompleteModal()">확인했습니다</button>
     </div>
 </div>
 
@@ -970,13 +1073,11 @@ async function submitBooking() {
             date: selectedSlot.date,
             time: selectedSlot.time,
             status: "pending",
+            rejectionReason: "",
             createdAt: new Date().toISOString()
         });
 
-        showAlert(
-            "success",
-            `예약 완료!<br>날짜: ${selectedSlot.date}<br>시간: ${selectedSlot.time}<br>교수: ${professor}`
-        );
+        showBookingCompleteModal(selectedSlot.date, selectedSlot.time, professor);
 
         document.getElementById("studentId").value = "";
         document.getElementById("studentName").value = "";
@@ -1019,12 +1120,17 @@ function searchMyBookings() {
                 : b.status === "rejected" ? "❌ 거절됨"
                 : "⏳ 승인대기중";
 
+            const reasonHtml = b.status === "rejected" && b.rejectionReason
+                ? `<div class="rejection-reason-box"><strong>거절 사유:</strong> ${b.rejectionReason}</div>`
+                : "";
+
             return `
                 <div class="booking-item">
                     <div class="booking-details">
                         <strong>${b.professor} 교수님</strong> <span style="color:#667eea;">[${statusLabel}]</span>
                         <span>${b.date} ${b.time} | ${b.studentName} | ${b.major}</span><br>
                         <span>상담 유형: ${Array.isArray(b.consultTypes) ? b.consultTypes.join(", ") : "미입력"}</span>
+                        ${reasonHtml}
                     </div>
                     <button class="cancel-btn" onclick="cancelBooking('${b.id}')">취소</button>
                 </div>
@@ -1118,7 +1224,25 @@ function loadUnavailableList() {
 }
 async function updateBookingStatus(id, status) {
     try {
-        await window.updateDoc(window.doc(window.db, "bookings", id), { status });
+        const updateData = { status };
+
+        if (status === "rejected") {
+            const reasonInput = document.getElementById(`rejectReason_${id}`);
+            const reason = reasonInput ? reasonInput.value.trim() : "";
+
+            if (!reason) {
+                showAdminAlert("error", "거절 사유를 입력하세요.");
+                return;
+            }
+
+            updateData.rejectionReason = reason;
+        }
+
+        if (status === "approved") {
+            updateData.rejectionReason = "";
+        }
+
+        await window.updateDoc(window.doc(window.db, "bookings", id), updateData);
         showAdminAlert("success", status === "approved" ? "예약이 승인되었습니다." : "예약이 거절되었습니다.");
     } catch (error) {
         showAdminAlert("error", "처리 실패: " + error.message);
@@ -1218,15 +1342,17 @@ function loadAdminBookings() {
     if (!currentAdmin) return;
 
     const date = document.getElementById("adminDate").value;
-    if (!date) return;
 
     let adminBookings;
 
     if (currentAdmin.id === "ipp") {
-        adminBookings = bookingsCache.filter(b => b.date === date);
+        adminBookings = date
+            ? bookingsCache.filter(b => b.date === date)
+            : [...bookingsCache];
     } else {
         adminBookings = bookingsCache.filter(b =>
-            b.professor === currentAdmin.name && b.date === date
+            b.professor === currentAdmin.name &&
+            (!date || b.date === date)
         );
     }
 
@@ -1238,10 +1364,13 @@ function loadAdminBookings() {
     }
 
     list.innerHTML = adminBookings
-    list.innerHTML = adminBookings
         .sort((a, b) => {
+            const dateCompare = (a.date || "").localeCompare(b.date || "");
+            if (dateCompare !== 0) return dateCompare;
+
             const professorCompare = (a.professor || "").localeCompare(b.professor || "");
             if (professorCompare !== 0) return professorCompare;
+
             return (a.time || "").localeCompare(b.time || "");
         })
         .map(b => {
@@ -1251,22 +1380,39 @@ function loadAdminBookings() {
 
             const actionButtons = b.status === "pending"
                 ? `
-                    <button class="add-btn" onclick="updateBookingStatus('${b.id}', 'approved')">승인</button>
-                    <button class="delete-btn" onclick="updateBookingStatus('${b.id}', 'rejected')">거절</button>
-                `
+                    <button class="add-btn action-btn" onclick="updateBookingStatus('${b.id}', 'approved')">승인</button>
+
+                   <input
+                        class="rejection-reason-input"
+                        id="rejectReason_${b.id}"
+                        type="text"
+                        placeholder="거절 사유 입력">
+
+                    <button class="delete-btn action-btn" onclick="updateBookingStatus('${b.id}', 'rejected')">거절</button>
+                  `
+                 : "";
+
+            const reasonHtml = b.status === "rejected" && b.rejectionReason
+                ? `<div class="rejection-reason-box"><strong>거절 사유:</strong> ${b.rejectionReason}</div>`
                 : "";
 
             return `
                 <div class="booking-item">
                     <div class="booking-details">
-                        <strong>${b.time} | ${b.professor} 교수님</strong> <span style="color:#667eea;">[${statusLabel}]</span>
+                        <strong>${b.date} ${b.time} | ${b.professor} 교수님</strong> <span style="color:#667eea;">[${statusLabel}]</span>
                         <span>${b.studentName} (${b.studentId}) | ${b.major} | ${b.phone}</span><br>
                         <span>상담 유형: ${Array.isArray(b.consultTypes) ? b.consultTypes.join(", ") : "미입력"}</span>
+                        ${reasonHtml}
                     </div>
-                    <div style="display:flex;gap:8px;">${actionButtons}</div>
+                    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px;">${actionButtons}</div>
                 </div>
             `;
         }).join("");
+}
+
+function showAllAdminBookings() {
+    document.getElementById("adminDate").value = "";
+    loadAdminBookings();
 }
 
 function downloadWeeklyCSV() {
@@ -1651,8 +1797,7 @@ function adminLogin() {
     loadUnavailableList();
     loadRecurringUnavailableList();
 
-    const today = getLocalDateString(new Date());
-    document.getElementById("adminDate").value = today;
+    document.getElementById("adminDate").value = "";
     loadAdminBookings();
 }
 
@@ -1758,6 +1903,23 @@ function adminNextWeek() {
     adminWeekStart.setDate(adminWeekStart.getDate() + 7);
     updateAdminWeekHeader();
     initAdminSchedule();
+}
+
+function showBookingCompleteModal(date, time, professor) {
+    const modal = document.getElementById("bookingCompleteModal");
+    const info = document.getElementById("bookingCompleteInfo");
+
+    info.innerHTML = `
+        <div><strong>날짜:</strong> ${date}</div>
+        <div><strong>시간:</strong> ${time}</div>
+        <div><strong>담당 교수:</strong> ${professor} 교수님</div>
+    `;
+
+    modal.style.display = "flex";
+}
+
+function closeBookingCompleteModal() {
+    document.getElementById("bookingCompleteModal").style.display = "none";
 }
 
 function showAlert(type, message) {
