@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -7,927 +8,936 @@
 
 <style>
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+margin: 0;
+padding: 0;
+box-sizing: border-box;
 }
 
 body {
-    font-family: 'Malgun Gothic', sans-serif;
-    background: #f5f7fa;
-    padding: 20px;
+font-family: 'Malgun Gothic', sans-serif;
+background: #f5f7fa;
+padding: 20px;
 }
 
 .container {
-    max-width: 1400px;
-    margin: 0 auto;
+max-width: 1400px;
+margin: 0 auto;
 }
 
 .header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 30px;
-    border-radius: 15px;
-    margin-bottom: 30px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+color: white;
+padding: 30px;
+border-radius: 15px;
+margin-bottom: 30px;
+box-shadow: 0 5px 20px rgba(0,0,0,0.1);
 }
 
 .header h1 {
-    font-size: 28px;
-    margin-bottom: 10px;
+font-size: 28px;
+margin-bottom: 10px;
 }
 
 .header p {
-    opacity: 0.9;
-    font-size: 14px;
+opacity: 0.9;
+font-size: 14px;
 }
 
 .nav-tabs {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-    border-bottom: 2px solid #e0e0e0;
-    flex-wrap: wrap;
+display: flex;
+gap: 10px;
+margin-bottom: 20px;
+border-bottom: 2px solid #e0e0e0;
+flex-wrap: wrap;
 }
 
 .nav-tab {
-    padding: 12px 25px;
-    background: white;
-    border: none;
-    cursor: pointer;
-    font-size: 15px;
-    font-weight: 500;
-    border-radius: 8px 8px 0 0;
-    transition: all 0.3s;
-    color: #666;
+padding: 12px 25px;
+background: white;
+border: none;
+cursor: pointer;
+font-size: 15px;
+font-weight: 500;
+border-radius: 8px 8px 0 0;
+transition: all 0.3s;
+color: #666;
 }
 
 .nav-tab.active {
-    background: #667eea;
-    color: white;
+background: #667eea;
+color: white;
 }
 
 .tab-content {
-    display: none;
+display: none;
 }
 
 .tab-content.active {
-    display: block;
+display: block;
 }
 
 .main-content {
-    background: white;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+background: white;
+padding: 30px;
+border-radius: 15px;
+box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
 .form-section {
-    margin-bottom: 30px;
+margin-bottom: 30px;
 }
 
 .form-section h3 {
-    color: #667eea;
-    margin-bottom: 15px;
-    font-size: 18px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #f0f0f0;
+color: #667eea;
+margin-bottom: 15px;
+font-size: 18px;
+padding-bottom: 10px;
+border-bottom: 2px solid #f0f0f0;
 }
 
 .form-row {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
-    margin-bottom: 20px;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+gap: 15px;
+margin-bottom: 20px;
 }
 
 .form-group {
-    display: flex;
-    flex-direction: column;
+display: flex;
+flex-direction: column;
 }
 
 .form-group label {
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: #333;
-    font-size: 14px;
+font-weight: 600;
+margin-bottom: 8px;
+color: #333;
+font-size: 14px;
 }
 
 .form-group select,
 .form-group input {
-    padding: 12px;
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
-    font-size: 14px;
+padding: 12px;
+border: 2px solid #e0e0e0;
+border-radius: 8px;
+font-size: 14px;
 }
 
 .form-group select:focus,
 .form-group input:focus {
-    outline: none;
-    border-color: #667eea;
+outline: none;
+border-color: #667eea;
 }
 
 .consult-type-row {
-    grid-column: 1 / -1;
+grid-column: 1 / -1;
 }
 
 .checkbox-group {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    gap: 30px;
-    padding: 12px;
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
-    background: white;
-    font-size: 14px;
-    align-items: center;
-    width: max-content;
-    margin-top: 8px;
-    margin-bottom: 3px;
+display: flex;
+flex-direction: row;
+flex-wrap: nowrap;
+gap: 30px;
+padding: 12px;
+border: 2px solid #e0e0e0;
+border-radius: 8px;
+background: white;
+font-size: 14px;
+align-items: center;
+width: max-content;
+margin-top: 8px;
+margin-bottom: 3px;
 }
 
 .checkbox-group label,
 .consult-item {
-    display: flex;
-    align-items: center;
-    white-space: nowrap;
-    font-weight: 400;
-    margin-bottom: 0;
-    cursor: pointer;
+display: flex;
+align-items: center;
+white-space: nowrap;
+font-weight: 400;
+margin-bottom: 0;
+cursor: pointer;
 }
 
 .checkbox-group input[type="checkbox"],
 .consult-item input[type="checkbox"] {
-    width: 16px;
-    height: 16px;
-    margin-right: 6px;
-    cursor: pointer;
+width: 16px;
+height: 16px;
+margin-right: 6px;
+cursor: pointer;
 }
 
 .consult-notice {
-    margin-top: -30px;
-    margin-bottom: 15px;
-    color: #666;
-    font-size: 13px;
-    line-height: 1.5;
-    padding-left: 5px;
+margin-top: -30px;
+margin-bottom: 15px;
+color: #666;
+font-size: 13px;
+line-height: 1.5;
+padding-left: 5px;
 }
 
 .calendar-container {
-    margin-top: 20px;
-    overflow-x: auto;
+margin-top: 20px;
+overflow-x: auto;
 }
 
 .calendar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    padding: 15px;
-    background: #f8f9ff;
-    border-radius: 10px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 20px;
+padding: 15px;
+background: #f8f9ff;
+border-radius: 10px;
 }
 
 .calendar-header h4 {
-    color: #667eea;
-    font-size: 18px;
+color: #667eea;
+font-size: 18px;
 }
 
 .calendar-nav {
-    display: flex;
-    gap: 10px;
+display: flex;
+gap: 10px;
 }
 
 .calendar-nav button {
-    padding: 8px 15px;
-    background: white;
-    border: 2px solid #667eea;
-    color: #667eea;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 600;
+padding: 8px 15px;
+background: white;
+border: 2px solid #667eea;
+color: #667eea;
+border-radius: 6px;
+cursor: pointer;
+font-weight: 600;
 }
 
 .calendar-nav button:hover {
-    background: #667eea;
-    color: white;
+background: #667eea;
+color: white;
 }
 
 .week-header,
 .schedule-grid,
 .admin-schedule-grid {
-    display: grid;
-    grid-template-columns: 100px repeat(7, minmax(120px, 1fr));
-    gap: 2px;
-    min-width: 940px;
+display: grid;
+grid-template-columns: 100px repeat(7, minmax(120px, 1fr));
+gap: 2px;
+min-width: 940px;
 }
 
 .week-header {
-    margin-bottom: 5px;
+margin-bottom: 5px;
 }
 
 .week-day {
-    text-align: center;
-    padding: 12px;
-    background: #667eea;
-    color: white;
-    font-weight: 600;
-    font-size: 14px;
-    border-radius: 6px;
+text-align: center;
+padding: 12px;
+background: #667eea;
+color: white;
+font-weight: 600;
+font-size: 14px;
+border-radius: 6px;
 }
 
 .week-day.weekend {
-    background: #ff6b6b;
+background: #ff6b6b;
 }
 
 .time-label {
-    background: #f8f9ff;
-    color: #667eea;
+background: #f8f9ff;
+color: #667eea;
 }
 
 .time-slot {
-    padding: 12px;
-    text-align: center;
-    background: #f8f9ff;
-    color: #667eea;
-    font-weight: 600;
-    font-size: 13px;
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+padding: 12px;
+text-align: center;
+background: #f8f9ff;
+color: #667eea;
+font-weight: 600;
+font-size: 13px;
+border-radius: 6px;
+display: flex;
+align-items: center;
+justify-content: center;
 }
 
 .slot-cell {
-    padding: 12px;
-    border: 2px solid #e0e0e0;
-    border-radius: 6px;
-    min-height: 60px;
-    cursor: pointer;
-    background: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
+padding: 12px;
+border: 2px solid #e0e0e0;
+border-radius: 6px;
+min-height: 60px;
+cursor: pointer;
+background: white;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 12px;
 }
 
 .slot-cell:hover:not(.booked):not(.unavailable) {
-    border-color: #667eea;
-    background: #f8f9ff;
+border-color: #667eea;
+background: #f8f9ff;
 }
 
 .slot-cell.booked {
-    background: #ffe6e6;
-    border-color: #ff6b6b;
-    cursor: not-allowed;
-    color: #ff6b6b;
-    font-weight: 600;
+background: #ffe6e6;
+border-color: #ff6b6b;
+cursor: not-allowed;
+color: #ff6b6b;
+font-weight: 600;
 }
 
 .slot-cell.unavailable {
-    background: #f0f0f0;
-    color: #999;
-    cursor: not-allowed;
+background: #f0f0f0;
+color: #999;
+cursor: not-allowed;
+}
+
+/* 추가: 과거 날짜 전체 마감 표시 */
+.slot-cell.past-closed,
+.slot-cell.past-closed:hover {
+    background: #eeeeee !important;
+    border-color: #dddddd !important;
+    color: #999999 !important;
+    cursor: not-allowed !important;
+    pointer-events: none;
+    font-weight: 600;
 }
 
 .slot-cell.selected {
-    background: #667eea;
-    color: white;
-    border-color: #667eea;
+background: #667eea;
+color: white;
+border-color: #667eea;
 }
 
 .submit-btn {
-    width: 100%;
-    padding: 15px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    margin-top: 20px;
+width: 100%;
+padding: 15px;
+background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+color: white;
+border: none;
+border-radius: 10px;
+font-size: 16px;
+font-weight: 600;
+cursor: pointer;
+margin-top: 20px;
 }
 
 .submit-btn:disabled {
-    background: #ccc;
-    cursor: not-allowed;
+background: #ccc;
+cursor: not-allowed;
 }
 
 .add-btn {
-    padding: 12px 25px;
-    background: #28a745;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
+padding: 12px 25px;
+background: #28a745;
+color: white;
+border: none;
+border-radius: 8px;
+font-size: 14px;
+font-weight: 600;
+cursor: pointer;
 }
 
 .action-btn {
-    width: 70px;
-    height: 36px;
-    padding: 0;
-    margin-top: 0;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+width: 70px;
+height: 36px;
+padding: 0;
+margin-top: 0;
+display: inline-flex;
+align-items: center;
+justify-content: center;
 }
 
 .alert {
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    display: none;
+padding: 15px;
+border-radius: 8px;
+margin-bottom: 20px;
+display: none;
 }
 
 .alert.success {
-    background: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
+background: #d4edda;
+color: #155724;
+border: 1px solid #c3e6cb;
 }
 
 .alert.error {
-    background: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
+background: #f8d7da;
+color: #721c24;
+border: 1px solid #f5c6cb;
 }
 
 .instructions {
-    background: #fff3cd;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    border-left: 4px solid #ffc107;
+background: #fff3cd;
+padding: 20px;
+border-radius: 10px;
+margin-bottom: 20px;
+border-left: 4px solid #ffc107;
 }
 
 .instructions h4 {
-    color: #856404;
-    margin-bottom: 10px;
+color: #856404;
+margin-bottom: 10px;
 }
 
 .instructions ul {
-    margin-left: 20px;
-    line-height: 1.8;
-    color: #856404;
+margin-left: 20px;
+line-height: 1.8;
+color: #856404;
 }
 
 .booking-list {
-    margin-top: 20px;
+margin-top: 20px;
 }
 
 .booking-item {
-    background: white;
-    padding: 15px;
-    border-radius: 8px;
-    border: 2px solid #e0e0e0;
-    margin-bottom: 10px;
+background: white;
+padding: 15px;
+border-radius: 8px;
+border: 2px solid #e0e0e0;
+margin-bottom: 10px;
 }
 
 .booking-details strong {
-    color: #667eea;
-    font-size: 16px;
-    display: block;
-    margin-bottom: 5px;
+color: #667eea;
+font-size: 16px;
+display: block;
+margin-bottom: 5px;
 }
 
 .booking-details span {
-    color: #666;
-    font-size: 14px;
+color: #666;
+font-size: 14px;
 }
 
 .cancel-btn,
 .delete-btn {
-    padding: 12px 15px;
-    background: #ff6b6b;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-top: 2px;
+padding: 12px 15px;
+background: #ff6b6b;
+color: white;
+border: none;
+border-radius: 6px;
+cursor: pointer;
+margin-top: 2px;
 }
 
 .login-container {
-    max-width: 400px;
-    margin: 50px auto;
-    padding: 30px;
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+max-width: 400px;
+margin: 50px auto;
+padding: 30px;
+background: white;
+border-radius: 15px;
+box-shadow: 0 5px 20px rgba(0,0,0,0.1);
 }
 
 .admin-section {
-    margin-bottom: 30px;
-    padding: 20px;
-    background: #f8f9ff;
-    border-radius: 10px;
+margin-bottom: 30px;
+padding: 20px;
+background: #f8f9ff;
+border-radius: 10px;
 }
 
 .admin-section h4 {
-    color: #667eea;
-    margin-bottom: 15px;
+color: #667eea;
+margin-bottom: 15px;
 }
 
 .unavailable-item {
-    background: white;
-    padding: 10px 15px;
-    border-radius: 6px;
-    margin-bottom: 8px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+background: white;
+padding: 10px 15px;
+border-radius: 6px;
+margin-bottom: 8px;
+display: flex;
+justify-content: space-between;
+align-items: center;
 }
 
 .logout-btn {
-    padding: 10px 20px;
-    background: #6c757d;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    float: right;
+padding: 10px 20px;
+background: #6c757d;
+color: white;
+border: none;
+border-radius: 6px;
+cursor: pointer;
+float: right;
 }
 
 .admin-slot-cell {
-    padding: 6px;
-    border: 2px solid #e0e0e0;
-    border-radius: 6px;
-    min-height: 60px;
-    max-height: 80px;
-    overflow-y: auto;
-    background: white;
-    display: block;
-    font-size: 11px;
+padding: 6px;
+border: 2px solid #e0e0e0;
+border-radius: 6px;
+min-height: 60px;
+max-height: 80px;
+overflow-y: auto;
+background: white;
+display: block;
+font-size: 11px;
 }
 
 .admin-slot-cell.booked {
-    background: #e3f2fd;
-    border-color: #667eea;
+background: #e3f2fd;
+border-color: #667eea;
 }
 
 .admin-slot-cell.unavailable {
-    background: #f0f0f0;
-    color: #999;
+background: #f0f0f0;
+color: #999;
 }
 
 .booking-complete-modal {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.45);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-    padding: 20px;
+position: fixed;
+inset: 0;
+background: rgba(0, 0, 0, 0.45);
+display: none;
+align-items: center;
+justify-content: center;
+z-index: 9999;
+padding: 20px;
 }
 
 .booking-complete-box {
-    background: white;
-    width: min(520px, 100%);
-    border-radius: 18px;
-    padding: 30px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
-    text-align: center;
-    animation: popIn 0.25s ease-out;
+background: white;
+width: min(520px, 100%);
+border-radius: 18px;
+padding: 30px;
+box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+text-align: center;
+animation: popIn 0.25s ease-out;
 }
 
 .booking-complete-box h2 {
-    color: #667eea;
-    font-size: 28px;
-    margin-bottom: 15px;
+color: #667eea;
+font-size: 28px;
+margin-bottom: 15px;
 }
 
 .booking-complete-info {
-    background: #f8f9ff;
-    border: 2px solid #d9defd;
-    border-radius: 12px;
-    padding: 18px;
-    margin: 18px 0;
-    text-align: left;
-    line-height: 1.8;
-    color: #333;
+background: #f8f9ff;
+border: 2px solid #d9defd;
+border-radius: 12px;
+padding: 18px;
+margin: 18px 0;
+text-align: left;
+line-height: 1.8;
+color: #333;
 }
 
 .booking-complete-notice {
-    color: #555;
-    font-size: 14px;
-    line-height: 1.7;
-    margin-bottom: 20px;
+color: #555;
+font-size: 14px;
+line-height: 1.7;
+margin-bottom: 20px;
 }
 
 .modal-close-btn {
-    width: 100%;
-    padding: 13px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 15px;
-    font-weight: 700;
-    cursor: pointer;
+width: 100%;
+padding: 13px;
+background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+color: white;
+border: none;
+border-radius: 10px;
+font-size: 15px;
+font-weight: 700;
+cursor: pointer;
 }
 
 .rejection-reason-input {
-    width: 220px;
-    padding: 8px 10px;
-    border: 2px solid #e0e0e0;
-    border-radius: 6px;
-    font-size: 13px;
+width: 220px;
+padding: 8px 10px;
+border: 2px solid #e0e0e0;
+border-radius: 6px;
+font-size: 13px;
 }
 
 .rejection-reason-box {
-    margin-top: 8px;
-    padding: 10px;
-    background: #fff3f3;
-    border-left: 4px solid #ff6b6b;
-    color: #721c24;
-    font-size: 13px;
-    line-height: 1.5;
+margin-top: 8px;
+padding: 10px;
+background: #fff3f3;
+border-left: 4px solid #ff6b6b;
+color: #721c24;
+font-size: 13px;
+line-height: 1.5;
 }
 
 @keyframes popIn {
-    from { transform: scale(0.92); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
+from { transform: scale(0.92); opacity: 0; }
+to { transform: scale(1); opacity: 1; }
 }
 
 @media (max-width: 768px) {
-    body {
-        padding: 10px;
-    }
+body {
+padding: 10px;
+}
 
-    .main-content {
-        padding: 20px;
-    }
+.main-content {
+padding: 20px;
+}
 
-    .calendar-header {
-        flex-direction: column;
-        gap: 10px;
-    }
+.calendar-header {
+flex-direction: column;
+gap: 10px;
+}
 
-    .checkbox-group {
-        flex-wrap: wrap;
-        width: 100%;
-    }
+.checkbox-group {
+flex-wrap: wrap;
+width: 100%;
+}
 }
 </style>
 </head>
 
+
 <body>
 <div class="container">
-    <div class="header">
-        <h1>📋 현장실습/일학습병행 전담교수 상담 예약 시스템</h1>
-        <p>현장실습지원센터 - IPP사업단 | ☁️ Cloud 버전</p>
-    </div>
+<div class="header">
+<h1>📋 현장실습/일학습병행 전담교수 상담 예약 시스템</h1>
+<p>현장실습지원센터 - IPP사업단 | ☁️ Cloud 버전</p>
+</div>
 
-    <div class="nav-tabs">
-        <button class="nav-tab active" onclick="switchTab('booking', this)">📅 예약하기</button>
-        <button class="nav-tab" onclick="switchTab('myBookings', this)">📋 내 예약 확인</button>
-        <button class="nav-tab" onclick="switchTab('professorLogin', this)">👨‍🏫 교수 로그인</button>
-    </div>
+<div class="nav-tabs">
+<button class="nav-tab active" onclick="switchTab('booking', this)">📅 예약하기</button>
+<button class="nav-tab" onclick="switchTab('myBookings', this)">📋 내 예약 확인</button>
+<button class="nav-tab" onclick="switchTab('professorLogin', this)">👨‍🏫 교수 로그인</button>
+</div>
 
-    <div id="booking" class="tab-content active">
-        <div class="main-content">
-            <div class="instructions">
-                <h4>📢 예약 전 필독사항</h4>
-                <ul>
-                    <li>nDRIMS 현장실습 기업 운영계획서에서 현장실습 담당교수를 확인하세요.</li>
+<div id="booking" class="tab-content active">
+<div class="main-content">
+<div class="instructions">
+<h4>📢 예약 전 필독사항</h4>
+<ul>
+<li>nDRIMS 현장실습 기업 운영계획서에서 현장실습 담당교수를 확인하세요.</li>
+                    <li>해당 기업이 없으면 공대 계열은 심재성/강용근 교수, 비공대 계열은 심관식/강민아 교수를 추천합니다.</li>
                     <li>해당 기업이 없으면 공대 계열은 심재성/강용근 교수, 바이오/공대 계열은 강민아 교수, 비공대 계열은 심관식 교수를 추천합니다.</li>
-                    <li>원하는 날짜와 시간을 선택하고 정보를 입력하세요.</li>
-                    <li><strong>예약 신청 후에는 담당 교수님의 승인이 완료되어야 최종 확정됩니다.</strong></li>
-                    <li>노쇼(No-Show)는 절대 금지입니다.</li>
-                    <li>일정 변경이 필요하면 최소 하루 전에 취소하세요.</li>
-                    <li><strong>상담 장소는 다향관 235호 회의실입니다.</strong></li>
-                    <li>특이사항이 있는 경우, 아래 연락처로 전화 바랍니다.</li>
-                    <div style="margin-left:2px; margin-top:-2px;">
-                         <strong>심재성 교수(02-2260-3623) | 심관식 교수(02-2260-3624) | 강용근 교수(02-2260-3622) | 강민아 교수(02-2260-3638)</strong>
-                    </div>
-                </ul>
-            </div>
+<li>원하는 날짜와 시간을 선택하고 정보를 입력하세요.</li>
+<li><strong>예약 신청 후에는 담당 교수님의 승인이 완료되어야 최종 확정됩니다.</strong></li>
+<li>노쇼(No-Show)는 절대 금지입니다.</li>
+<li>일정 변경이 필요하면 최소 하루 전에 취소하세요.</li>
+<li><strong>상담 장소는 다향관 235호 회의실입니다.</strong></li>
+<li>특이사항이 있는 경우, 아래 연락처로 전화 바랍니다.</li>
+<div style="margin-left:2px; margin-top:-2px;">
+<strong>심재성 교수(02-2260-3623) | 심관식 교수(02-2260-3624) | 강용근 교수(02-2260-3622) | 강민아 교수(02-2260-3638)</strong>
+</div>
+</ul>
+</div>
 
-            <div id="alert" class="alert"></div>
+<div id="alert" class="alert"></div>
 
-            <div class="form-section">
-                <h3>1️⃣ 예약자 정보 입력</h3>
+<div class="form-section">
+<h3>1️⃣ 예약자 정보 입력</h3>
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>담당교수 선택 *</label>
-                        <select id="professor" onchange="onProfessorChange()">
-                            <option value="">선택하세요</option>
-                            <option value="심재성">심재성 교수</option>
-                            <option value="심관식">심관식 교수</option>
-                            <option value="강용근">강용근 교수</option>
-                            <option value="강민아">강민아 교수</option>
-                        </select>
-                    </div>
+<div class="form-row">
+<div class="form-group">
+<label>담당교수 선택 *</label>
+<select id="professor" onchange="onProfessorChange()">
+<option value="">선택하세요</option>
+<option value="심재성">심재성 교수</option>
+<option value="심관식">심관식 교수</option>
+<option value="강용근">강용근 교수</option>
+<option value="강민아">강민아 교수</option>
+</select>
+</div>
 
-                    <div class="form-group">
-                        <label>학번 *</label>
-                        <input type="text" id="studentId" placeholder="예: 20201234">
-                    </div>
+<div class="form-group">
+<label>학번 *</label>
+<input type="text" id="studentId" placeholder="예: 20201234">
+</div>
 
-                    <div class="form-group">
-                        <label>이름 *</label>
-                        <input type="text" id="studentName" placeholder="김동국">
-                    </div>
+<div class="form-group">
+<label>이름 *</label>
+<input type="text" id="studentName" placeholder="김동국">
+</div>
 
-                    <div class="form-group">
-                        <label>전공 *</label>
-                        <input type="text" id="major" placeholder="컴퓨터공학과">
-                    </div>
+<div class="form-group">
+<label>전공 *</label>
+<input type="text" id="major" placeholder="컴퓨터공학과">
+</div>
 
-                    <div class="form-group">
-                        <label>연락처 *</label>
-                        <input type="tel" id="phone" placeholder="010-1234-5678">
-                    </div>
+<div class="form-group">
+<label>연락처 *</label>
+<input type="tel" id="phone" placeholder="010-1234-5678">
+</div>
 
-                    <div class="form-group consult-type-row">
-                        <label style="display:block; margin-bottom:2px;">상담 유형 *</label>
+<div class="form-group consult-type-row">
+<label style="display:block; margin-bottom:2px;">상담 유형 *</label>
 
-                        <div class="checkbox-group">
-                            <label class="consult-item">
-                                <input type="checkbox" name="consultType" value="지원 전 희망 기업 및 직무 관련">
-                                <span>[지원 전] 희망 기업 및 직무 관련</span>
-                            </label>
+<div class="checkbox-group">
+<label class="consult-item">
+<input type="checkbox" name="consultType" value="지원 전 희망 기업 및 직무 관련">
+<span>[지원 전] 희망 기업 및 직무 관련</span>
+</label>
 
-                            <label class="consult-item">
-                                <input type="checkbox" name="consultType" value="실습 중 현장실습 관련 고충 상담">
-                                <span>[실습 중] 현장실습 관련 고충 상담</span>
-                            </label>
+<label class="consult-item">
+<input type="checkbox" name="consultType" value="실습 중 현장실습 관련 고충 상담">
+<span>[실습 중] 현장실습 관련 고충 상담</span>
+</label>
 
-                            <label class="consult-item">
-                                <input type="checkbox" name="consultType" value="서류 이력서 및 자기소개서 작성 관련 상담">
-                                <span>[서류] 이력서 및 자기소개서 작성 관련 상담</span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<label class="consult-item">
+<input type="checkbox" name="consultType" value="서류 이력서 및 자기소개서 작성 관련 상담">
+<span>[서류] 이력서 및 자기소개서 작성 관련 상담</span>
+</label>
+</div>
+</div>
+</div>
+</div>
 
-            <div class="consult-notice">
-                ※ 이력서 및 자기소개서 작성 관련 상담은 전문 컨설턴트 일정에 따라 진행되며, 상담이 가능한 경우 개별적으로 일정을 안내해 드립니다.
-            </div>
+<div class="form-section">
+<h3>2️⃣ 상담을 원하는 교수와 원하는 시간 선택</h3>
+<div class="calendar-container">
+<div class="calendar-header">
+<h4 id="currentWeek"></h4>
+<div class="calendar-nav">
+<button onclick="previousWeek()">◀ 이전 주</button>
+<button onclick="nextWeek()">다음 주 ▶</button>
+</div>
+</div>
 
-            <div class="form-section">
-                <h3>2️⃣ 상담을 원하는 교수와 원하는 시간 선택</h3>
-                <div class="calendar-container">
-                    <div class="calendar-header">
-                        <h4 id="currentWeek"></h4>
-                        <div class="calendar-nav">
-                            <button onclick="previousWeek()">◀ 이전 주</button>
-                            <button onclick="nextWeek()">다음 주 ▶</button>
-                        </div>
-                    </div>
+<div class="week-header" id="weekHeader"></div>
+<div id="scheduleGrid" class="schedule-grid"></div>
+</div>
+</div>
 
-                    <div class="week-header" id="weekHeader"></div>
-                    <div id="scheduleGrid" class="schedule-grid"></div>
-                </div>
-            </div>
+<button class="submit-btn" onclick="submitBooking()" id="submitBtn" disabled>예약 신청하기</button>
+</div>
+</div>
 
-            <button class="submit-btn" onclick="submitBooking()" id="submitBtn" disabled>예약 신청하기</button>
-        </div>
-    </div>
+<div id="myBookings" class="tab-content">
+<div class="main-content">
+<h3>📋 내 예약 현황</h3>
 
-    <div id="myBookings" class="tab-content">
-        <div class="main-content">
-            <h3>📋 내 예약 현황</h3>
+<div class="form-row" style="margin-top: 20px;">
+<div class="form-group">
+<label>학번 입력</label>
+<input type="text" id="searchStudentId" placeholder="학번을 입력하세요">
+</div>
+<div class="form-group" style="justify-content: flex-end; margin-top: 20px;">
+<button class="submit-btn" onclick="searchMyBookings()" style="margin-top: 0;">조회하기</button>
+</div>
+</div>
 
-            <div class="form-row" style="margin-top: 20px;">
-                <div class="form-group">
-                    <label>학번 입력</label>
-                    <input type="text" id="searchStudentId" placeholder="학번을 입력하세요">
-                </div>
-                <div class="form-group" style="justify-content: flex-end; margin-top: 20px;">
-                    <button class="submit-btn" onclick="searchMyBookings()" style="margin-top: 0;">조회하기</button>
-                </div>
-            </div>
+<div id="myBookingsList" class="booking-list">
+<p style="text-align:center;color:#999;padding:40px;">학번을 입력하고 조회 버튼을 눌러주세요.</p>
+</div>
+</div>
+</div>
 
-            <div id="myBookingsList" class="booking-list">
-                <p style="text-align:center;color:#999;padding:40px;">학번을 입력하고 조회 버튼을 눌러주세요.</p>
-            </div>
-        </div>
-    </div>
+<div id="professorLogin" class="tab-content">
+<div id="loginForm" class="login-container">
+<h3>👨‍🏫 교수 전용 로그인</h3>
+<div id="loginAlert" class="alert"></div>
 
-    <div id="professorLogin" class="tab-content">
-        <div id="loginForm" class="login-container">
-            <h3>👨‍🏫 교수 전용 로그인</h3>
-            <div id="loginAlert" class="alert"></div>
+<div class="form-group">
+<label>아이디</label>
+<input type="text" id="adminId" placeholder="아이디">
+</div>
 
-            <div class="form-group">
-                <label>아이디</label>
-                <input type="text" id="adminId" placeholder="아이디">
-            </div>
+<div class="form-group" style="margin-top: 15px;">
+<label>비밀번호</label>
+<input type="password" id="adminPw" placeholder="비밀번호">
+</div>
 
-            <div class="form-group" style="margin-top: 15px;">
-                <label>비밀번호</label>
-                <input type="password" id="adminPw" placeholder="비밀번호">
-            </div>
+<button class="submit-btn" onclick="adminLogin()">로그인</button>
+</div>
 
-            <button class="submit-btn" onclick="adminLogin()">로그인</button>
-        </div>
+<div id="adminPanel" class="main-content" style="display:none;">
+<button class="logout-btn" onclick="adminLogout()">로그아웃</button>
+<h3>👨‍🏫 교수 관리 페이지</h3>
+<p style="color:#666;margin-bottom:20px;">환영합니다, <strong id="adminName"></strong>님</p>
 
-        <div id="adminPanel" class="main-content" style="display:none;">
-            <button class="logout-btn" onclick="adminLogout()">로그아웃</button>
-            <h3>👨‍🏫 교수 관리 페이지</h3>
-            <p style="color:#666;margin-bottom:20px;">환영합니다, <strong id="adminName"></strong>님</p>
+<div class="admin-section">
+<h4>🚫 불가능 시간 등록</h4>
+<div id="adminAlert" class="alert"></div>
 
-            <div class="admin-section">
-                <h4>🚫 불가능 시간 등록</h4>
-                <div id="adminAlert" class="alert"></div>
+<div class="form-row">
+<div class="form-group">
+<label>날짜</label>
+<input type="date" id="unavailableDate">
+</div>
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>날짜</label>
-                        <input type="date" id="unavailableDate">
-                    </div>
+<div class="form-group">
+<label>시작 시간</label>
+<select id="unavailableStartTime">
+<option value="09:00">09:00</option>
+<option value="09:30">09:30</option>
+<option value="10:00">10:00</option>
+<option value="10:30">10:30</option>
+<option value="11:00">11:00</option>
+<option value="11:30">11:30</option>
+<option value="13:00">13:00</option>
+<option value="13:30">13:30</option>
+<option value="14:00">14:00</option>
+<option value="14:30">14:30</option>
+<option value="15:00">15:00</option>
+<option value="15:30">15:30</option>
+<option value="16:00">16:00</option>
+<option value="16:30">16:30</option>
+</select>
+</div>
 
-                    <div class="form-group">
-                        <label>시작 시간</label>
-                        <select id="unavailableStartTime">
-                            <option value="09:00">09:00</option>
-                            <option value="09:30">09:30</option>
-                            <option value="10:00">10:00</option>
-                            <option value="10:30">10:30</option>
-                            <option value="11:00">11:00</option>
-                            <option value="11:30">11:30</option>
-                            <option value="13:00">13:00</option>
-                            <option value="13:30">13:30</option>
-                            <option value="14:00">14:00</option>
-                            <option value="14:30">14:30</option>
-                            <option value="15:00">15:00</option>
-                            <option value="15:30">15:30</option>
-                            <option value="16:00">16:00</option>
-                            <option value="16:30">16:30</option>
-                        </select>
-                    </div>
+<div class="form-group">
+<label>종료 시간</label>
+<select id="unavailableEndTime">
+<option value="09:30">09:30</option>
+<option value="10:00">10:00</option>
+<option value="10:30">10:30</option>
+<option value="11:00">11:00</option>
+<option value="11:30">11:30</option>
+<option value="12:00">12:00</option>
+<option value="13:30">13:30</option>
+<option value="14:00">14:00</option>
+<option value="14:30">14:30</option>
+<option value="15:00">15:00</option>
+<option value="15:30">15:30</option>
+<option value="16:00">16:00</option>
+<option value="16:30">16:30</option>
+<option value="17:00">17:00</option>
+</select>
+</div>
+</div>
 
-                    <div class="form-group">
-                        <label>종료 시간</label>
-                        <select id="unavailableEndTime">
-                            <option value="09:30">09:30</option>
-                            <option value="10:00">10:00</option>
-                            <option value="10:30">10:30</option>
-                            <option value="11:00">11:00</option>
-                            <option value="11:30">11:30</option>
-                            <option value="12:00">12:00</option>
-                            <option value="13:30">13:30</option>
-                            <option value="14:00">14:00</option>
-                            <option value="14:30">14:30</option>
-                            <option value="15:00">15:00</option>
-                            <option value="15:30">15:30</option>
-                            <option value="16:00">16:00</option>
-                            <option value="16:30">16:30</option>
-                            <option value="17:00">17:00</option>
-                        </select>
-                    </div>
-                </div>
+<button class="add-btn" onclick="addUnavailableTime()">➕ 추가</button>
+<div id="unavailableList" style="margin-top:20px;"></div>
+</div>
 
-                <button class="add-btn" onclick="addUnavailableTime()">➕ 추가</button>
-                <div id="unavailableList" style="margin-top:20px;"></div>
-            </div>
+<div class="admin-section">
+<h4>🔁 정기 불가 시간 (요일 반복)</h4>
+<div id="recurringAlert" class="alert"></div>
 
-            <div class="admin-section">
-                <h4>🔁 정기 불가 시간 (요일 반복)</h4>
-                <div id="recurringAlert" class="alert"></div>
+<div class="form-row">
+<div class="form-group">
+<label>요일</label>
+<select id="recurringDay">
+<option value="0">월요일</option>
+<option value="1">화요일</option>
+<option value="2">수요일</option>
+<option value="3">목요일</option>
+<option value="4">금요일</option>
+</select>
+</div>
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>요일</label>
-                        <select id="recurringDay">
-                            <option value="0">월요일</option>
-                            <option value="1">화요일</option>
-                            <option value="2">수요일</option>
-                            <option value="3">목요일</option>
-                            <option value="4">금요일</option>
-                        </select>
-                    </div>
+<div class="form-group">
+<label>시작 시간</label>
+<select id="recurringStartTime">
+<option value="09:00">09:00</option>
+<option value="09:30">09:30</option>
+<option value="10:00">10:00</option>
+<option value="10:30">10:30</option>
+<option value="11:00">11:00</option>
+<option value="11:30">11:30</option>
+<option value="13:00">13:00</option>
+<option value="13:30">13:30</option>
+<option value="14:00">14:00</option>
+<option value="14:30">14:30</option>
+<option value="15:00">15:00</option>
+<option value="15:30">15:30</option>
+<option value="16:00">16:00</option>
+<option value="16:30">16:30</option>
+</select>
+</div>
 
-                    <div class="form-group">
-                        <label>시작 시간</label>
-                        <select id="recurringStartTime">
-                            <option value="09:00">09:00</option>
-                            <option value="09:30">09:30</option>
-                            <option value="10:00">10:00</option>
-                            <option value="10:30">10:30</option>
-                            <option value="11:00">11:00</option>
-                            <option value="11:30">11:30</option>
-                            <option value="13:00">13:00</option>
-                            <option value="13:30">13:30</option>
-                            <option value="14:00">14:00</option>
-                            <option value="14:30">14:30</option>
-                            <option value="15:00">15:00</option>
-                            <option value="15:30">15:30</option>
-                            <option value="16:00">16:00</option>
-                            <option value="16:30">16:30</option>
-                        </select>
-                    </div>
+<div class="form-group">
+<label>종료 시간</label>
+<select id="recurringEndTime">
+<option value="09:30">09:30</option>
+<option value="10:00">10:00</option>
+<option value="10:30">10:30</option>
+<option value="11:00">11:00</option>
+<option value="11:30">11:30</option>
+<option value="12:00">12:00</option>
+<option value="13:30">13:30</option>
+<option value="14:00">14:00</option>
+<option value="14:30">14:30</option>
+<option value="15:00">15:00</option>
+<option value="15:30">15:30</option>
+<option value="16:00">16:00</option>
+<option value="16:30">16:30</option>
+<option value="17:00">17:00</option>
+</select>
+</div>
+</div>
 
-                    <div class="form-group">
-                        <label>종료 시간</label>
-                        <select id="recurringEndTime">
-                            <option value="09:30">09:30</option>
-                            <option value="10:00">10:00</option>
-                            <option value="10:30">10:30</option>
-                            <option value="11:00">11:00</option>
-                            <option value="11:30">11:30</option>
-                            <option value="12:00">12:00</option>
-                            <option value="13:30">13:30</option>
-                            <option value="14:00">14:00</option>
-                            <option value="14:30">14:30</option>
-                            <option value="15:00">15:00</option>
-                            <option value="15:30">15:30</option>
-                            <option value="16:00">16:00</option>
-                            <option value="16:30">16:30</option>
-                            <option value="17:00">17:00</option>
-                        </select>
-                    </div>
-                </div>
+<button class="add-btn" onclick="addRecurringUnavailable()">➕ 정기 불가 시간 추가</button>
+<div id="recurringUnavailableList" style="margin-top:20px;"></div>
+</div>
 
-                <button class="add-btn" onclick="addRecurringUnavailable()">➕ 정기 불가 시간 추가</button>
-                <div id="recurringUnavailableList" style="margin-top:20px;"></div>
-            </div>
+<div class="admin-section">
+<h4>📅 주간 예약 현황</h4>
 
-            <div class="admin-section">
-                <h4>📅 주간 예약 현황</h4>
+<div class="calendar-container">
+<div class="calendar-header">
+<h4 id="adminCurrentWeek"></h4>
+<div class="calendar-nav">
+<button onclick="adminPreviousWeek()">◀</button>
+<button onclick="adminNextWeek()">▶</button>
+</div>
+</div>
 
-                <div class="calendar-container">
-                    <div class="calendar-header">
-                        <h4 id="adminCurrentWeek"></h4>
-                        <div class="calendar-nav">
-                            <button onclick="adminPreviousWeek()">◀</button>
-                            <button onclick="adminNextWeek()">▶</button>
-                        </div>
-                    </div>
+<div class="week-header" id="adminWeekHeader"></div>
+<div id="adminScheduleGrid" class="admin-schedule-grid"></div>
+</div>
+</div>
 
-                    <div class="week-header" id="adminWeekHeader"></div>
-                    <div id="adminScheduleGrid" class="admin-schedule-grid"></div>
-                </div>
-            </div>
+<div class="admin-section">
+<h4>📋 전체 예약 목록 / 날짜별 상세 조회</h4>
 
-            <div class="admin-section">
-                <h4>📋 전체 예약 목록 / 날짜별 상세 조회</h4>
+<div style="display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;">
+<button class="add-btn" onclick="downloadWeeklyCSV()">
+📥 이번 주 예약 목록 CSV 다운로드
+</button>
 
-                <div style="display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;">
-                    <button class="add-btn" onclick="downloadWeeklyCSV()">
-                    📥 이번 주 예약 목록 CSV 다운로드
-                    </button>
+<button class="add-btn" onclick="downloadAllCSV()">
+📥 누적 예약 목록 CSV 다운로드
+</button>
+</div>
 
-                    <button class="add-btn" onclick="downloadAllCSV()">
-                    📥 누적 예약 목록 CSV 다운로드
-                    </button>
-                </div>
+<div class="form-group">
+<label>날짜 선택 (비워두면 전체 예약 표시)</label>
+<input type="date" id="adminDate" onchange="loadAdminBookings()">
+<button class="add-btn" onclick="showAllAdminBookings()" style="margin-top:10px;">전체 예약 목록 보기</button>
+</div>
 
-                <div class="form-group">
-                    <label>날짜 선택 (비워두면 전체 예약 표시)</label>
-                    <input type="date" id="adminDate" onchange="loadAdminBookings()">
-                    <button class="add-btn" onclick="showAllAdminBookings()" style="margin-top:10px;">전체 예약 목록 보기</button>
-                </div>
-
-                <div id="adminBookingsList" class="booking-list" style="margin-top:20px;">
-                    <p style="text-align:center;color:#999;">전체 예약 목록 또는 날짜를 선택하세요.</p>
-                </div>
-            </div>
-        </div>
-    </div>
+<div id="adminBookingsList" class="booking-list" style="margin-top:20px;">
+<p style="text-align:center;color:#999;">전체 예약 목록 또는 날짜를 선택하세요.</p>
+</div>
+</div>
+</div>
+</div>
 </div>
 
 <div id="bookingCompleteModal" class="booking-complete-modal">
-    <div class="booking-complete-box">
-        <h2>✅ 예약완료!</h2>
-        <div id="bookingCompleteInfo" class="booking-complete-info"></div>
-        <div class="booking-complete-notice">
-            담당 교수님의 승인이 완료되어야 최종 확정됩니다.<br>
-            승인 여부 또는 거절 사유는 <strong>&lt;내 예약 확인&gt;</strong> 페이지에서 확인하세요.
-        </div>
-        <button class="modal-close-btn" onclick="closeBookingCompleteModal()">확인했습니다</button>
-    </div>
+<div class="booking-complete-box">
+<h2>✅ 예약완료!</h2>
+<div id="bookingCompleteInfo" class="booking-complete-info"></div>
+<div class="booking-complete-notice">
+담당 교수님의 승인이 완료되어야 최종 확정됩니다.<br>
+승인 여부 또는 거절 사유는 <strong>&lt;내 예약 확인&gt;</strong> 페이지에서 확인하세요.
+</div>
+<button class="modal-close-btn" onclick="closeBookingCompleteModal()">확인했습니다</button>
+</div>
 </div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import {
-    getFirestore,
-    collection,
-    addDoc,
-    getDocs,
-    deleteDoc,
-    updateDoc,
-    doc,
-    query,
-    where,
-    onSnapshot
+getFirestore,
+collection,
+addDoc,
+getDocs,
+deleteDoc,
+updateDoc,
+doc,
+query,
+where,
+onSnapshot
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBysRSYpMALCpf85-mAGZRya-hXFWzF19A",
-    authDomain: "booking-d079b.firebaseapp.com",
-    projectId: "booking-d079b",
-    storageBucket: "booking-d079b.firebasestorage.app",
-    messagingSenderId: "285721499780",
-    appId: "1:285721499780:web:94ca8e472b35dfb3f00ad1",
-    measurementId: "G-817KD1JYRZ"
+apiKey: "AIzaSyBysRSYpMALCpf85-mAGZRya-hXFWzF19A",
+authDomain: "booking-d079b.firebaseapp.com",
+projectId: "booking-d079b",
+storageBucket: "booking-d079b.firebasestorage.app",
+messagingSenderId: "285721499780",
+appId: "1:285721499780:web:94ca8e472b35dfb3f00ad1",
+measurementId: "G-817KD1JYRZ"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -949,11 +959,11 @@ console.log("Firebase 연결 완료");
 
 <script>
 const adminAccounts = {
-    sim: { password: "sim1234", name: "심재성" },
-    simk: { password: "simk1234", name: "심관식" },
-    kang: { password: "kang1234", name: "강용근" },
-    kangm: { password: "kangm1234", name: "강민아" },
-    ipp: { password: "ipp1234", name: "행정팀" }
+sim: { password: "sim1234", name: "심재성" },
+simk: { password: "simk1234", name: "심관식" },
+kang: { password: "kang1234", name: "강용근" },
+kangm: { password: "kangm1234", name: "강민아" },
+ipp: { password: "ipp1234", name: "행정팀" }
 };
 
 let currentAdmin = null;
@@ -966,420 +976,435 @@ const timeSlots = ["09:00", "09:30", "10:00", "10:30", "11:00", "11:30","13:00",
 
 const holidays = ["2026-07-17"];
 
-    function addMinutes(timeStr, minutes) {
-    const [h, m] = timeStr.split(":").map(Number);
-    const total = h * 60 + m + minutes;
-    const hh = String(Math.floor(total / 60)).padStart(2, "0");
-    const mm = String(total % 60).padStart(2, "0");
-    return `${hh}:${mm}`;
+function addMinutes(timeStr, minutes) {
+const [h, m] = timeStr.split(":").map(Number);
+const total = h * 60 + m + minutes;
+const hh = String(Math.floor(total / 60)).padStart(2, "0");
+const mm = String(total % 60).padStart(2, "0");
+return `${hh}:${mm}`;
 }
 
 function getEndIndex(endTime) {
-    const endBoundaries = timeSlots.map(t => addMinutes(t, 30));
-    return endBoundaries.indexOf(endTime);
+const endBoundaries = timeSlots.map(t => addMinutes(t, 30));
+return endBoundaries.indexOf(endTime);
 }
-    
+
 let bookingsCache = [];
 let unavailableCache = [];
 let recurringUnavailableCache = [];
 
 function getMonday(date) {
-    const d = new Date(date);
-    const day = d.getDay();
-    const diff = d.getDate() - day + (day === 0 ? -6 : 1);
-    d.setDate(diff);
-    d.setHours(0, 0, 0, 0);
-    return d;
+const d = new Date(date);
+const day = d.getDay();
+const diff = d.getDate() - day + (day === 0 ? -6 : 1);
+d.setDate(diff);
+d.setHours(0, 0, 0, 0);
+return d;
 }
 
 function getLocalDateString(date) {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const day = String(date.getDate()).padStart(2, "0");
-    return `${year}-${month}-${day}`;
+const year = date.getFullYear();
+const month = String(date.getMonth() + 1).padStart(2, "0");
+const day = String(date.getDate()).padStart(2, "0");
+return `${year}-${month}-${day}`;
+}
+
+
+function isPastDate(dateString) {
+    return dateString < getLocalDateString(new Date());
 }
 
 function initRealtimeListeners() {
-    if (!window.db) return;
+if (!window.db) return;
 
-    window.onSnapshot(window.collection(window.db, "bookings"), snapshot => {
-        bookingsCache = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
-        initSchedule();
-        if (currentAdmin) {
-            initAdminSchedule();
-            loadAdminBookings();
-        }
-    });
+window.onSnapshot(window.collection(window.db, "bookings"), snapshot => {
+bookingsCache = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+initSchedule();
+if (currentAdmin) {
+initAdminSchedule();
+loadAdminBookings();
+}
+});
 
-    window.onSnapshot(window.collection(window.db, "unavailableTimes"), snapshot => {
-        unavailableCache = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
-        initSchedule();
-        if (currentAdmin) {
-            initAdminSchedule();
-            loadUnavailableList();
-        }
-    });
+window.onSnapshot(window.collection(window.db, "unavailableTimes"), snapshot => {
+unavailableCache = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+initSchedule();
+if (currentAdmin) {
+initAdminSchedule();
+loadUnavailableList();
+}
+});
 
-    window.onSnapshot(window.collection(window.db, "recurringUnavailable"), snapshot => {
-        recurringUnavailableCache = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
-        initSchedule();
-        if (currentAdmin) {
-            initAdminSchedule();
-            loadRecurringUnavailableList();
-        }
-    });
+window.onSnapshot(window.collection(window.db, "recurringUnavailable"), snapshot => {
+recurringUnavailableCache = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+initSchedule();
+if (currentAdmin) {
+initAdminSchedule();
+loadRecurringUnavailableList();
+}
+});
 }
 
 async function submitBooking() {
-    const professor = document.getElementById("professor").value;
-    const studentId = document.getElementById("studentId").value.trim();
-    const studentName = document.getElementById("studentName").value.trim();
-    const major = document.getElementById("major").value.trim();
-    const phone = document.getElementById("phone").value.trim();
-    const consultTypes = Array.from(document.querySelectorAll('input[name="consultType"]:checked'))
-        .map(checkbox => checkbox.value);
+const professor = document.getElementById("professor").value;
+const studentId = document.getElementById("studentId").value.trim();
+const studentName = document.getElementById("studentName").value.trim();
+const major = document.getElementById("major").value.trim();
+const phone = document.getElementById("phone").value.trim();
+const consultTypes = Array.from(document.querySelectorAll('input[name="consultType"]:checked'))
+.map(checkbox => checkbox.value);
 
-    if (!professor || !studentId || !studentName || !major || !phone || consultTypes.length === 0) {
-        showAlert("error", "모든 정보와 상담 유형을 선택해주세요.");
-        return;
-    }
+if (!professor || !studentId || !studentName || !major || !phone || consultTypes.length === 0) {
+showAlert("error", "모든 정보와 상담 유형을 선택해주세요.");
+return;
+}
 
-    if (!selectedSlot) {
-        showAlert("error", "시간을 선택해주세요.");
-        return;
-    }
+if (!selectedSlot) {
+showAlert("error", "시간을 선택해주세요.");
+return;
+}
 
-    const alreadyBooked = bookingsCache.some(b =>
-        b.professor === professor &&
-        b.date === selectedSlot.date &&
-        b.time === selectedSlot.time &&
-        b.status !== "rejected"
-    );
+if (isPastDate(selectedSlot.date)) {
+    selectedSlot = null;
+    document.getElementById("submitBtn").disabled = true;
+    showAlert("error", "지난 날짜에는 예약할 수 없습니다.");
+    initSchedule();
+    return;
+}
 
-    if (alreadyBooked) {
-        showAlert("error", "이미 예약된 시간입니다.");
-        initSchedule();
-        return;
-    }
+const alreadyBooked = bookingsCache.some(b =>
+b.professor === professor &&
+b.date === selectedSlot.date &&
+b.time === selectedSlot.time &&
+b.status !== "rejected"
+);
 
-    try {
-        await window.addDoc(window.collection(window.db, "bookings"), {
-            professor,
-            studentId,
-            studentName,
-            major,
-            phone,
-            consultTypes,
-            date: selectedSlot.date,
-            time: selectedSlot.time,
-            status: "pending",
-            rejectionReason: "",
-            createdAt: new Date().toISOString()
-        });
+if (alreadyBooked) {
+showAlert("error", "이미 예약된 시간입니다.");
+initSchedule();
+return;
+}
 
-        showBookingCompleteModal(selectedSlot.date, selectedSlot.time, professor);
+try {
+await window.addDoc(window.collection(window.db, "bookings"), {
+professor,
+studentId,
+studentName,
+major,
+phone,
+consultTypes,
+date: selectedSlot.date,
+time: selectedSlot.time,
+status: "pending",
+rejectionReason: "",
+createdAt: new Date().toISOString()
+});
 
-        document.getElementById("studentId").value = "";
-        document.getElementById("studentName").value = "";
-        document.getElementById("major").value = "";
-        document.getElementById("phone").value = "";
+showBookingCompleteModal(selectedSlot.date, selectedSlot.time, professor);
 
-        document.querySelectorAll('input[name="consultType"]').forEach(checkbox => {
-            checkbox.checked = false;
-        });
+document.getElementById("studentId").value = "";
+document.getElementById("studentName").value = "";
+document.getElementById("major").value = "";
+document.getElementById("phone").value = "";
 
-        selectedSlot = null;
-        document.getElementById("submitBtn").disabled = true;
-        initSchedule();
+document.querySelectorAll('input[name="consultType"]').forEach(checkbox => {
+checkbox.checked = false;
+});
 
-    } catch (error) {
-        showAlert("error", "Firebase 오류: " + error.message);
-    }
+selectedSlot = null;
+document.getElementById("submitBtn").disabled = true;
+initSchedule();
+
+} catch (error) {
+showAlert("error", "Firebase 오류: " + error.message);
+}
 }
 
 function searchMyBookings() {
-    const studentId = document.getElementById("searchStudentId").value.trim();
+const studentId = document.getElementById("searchStudentId").value.trim();
 
-    if (!studentId) {
-        showAlert("error", "학번을 입력하세요.");
-        return;
-    }
+if (!studentId) {
+showAlert("error", "학번을 입력하세요.");
+return;
+}
 
-    const myBookings = bookingsCache.filter(b => b.studentId === studentId);
-    const list = document.getElementById("myBookingsList");
+const myBookings = bookingsCache.filter(b => b.studentId === studentId);
+const list = document.getElementById("myBookingsList");
 
-    if (myBookings.length === 0) {
-        list.innerHTML = '<p style="text-align:center;color:#999;padding:40px;">예약 내역이 없습니다.</p>';
-        return;
-    }
+if (myBookings.length === 0) {
+list.innerHTML = '<p style="text-align:center;color:#999;padding:40px;">예약 내역이 없습니다.</p>';
+return;
+}
 
-    list.innerHTML = myBookings
-        .sort((a, b) => (a.date + a.time).localeCompare(b.date + b.time))
-        .map(b => {
-            const statusLabel = b.status === "approved" ? "✅ 승인완료"
-                : b.status === "rejected" ? "❌ 거절됨"
-                : "⏳ 승인대기중";
+list.innerHTML = myBookings
+.sort((a, b) => (a.date + a.time).localeCompare(b.date + b.time))
+.map(b => {
+const statusLabel = b.status === "approved" ? "✅ 승인완료"
+: b.status === "rejected" ? "❌ 거절됨"
+: "⏳ 승인대기중";
 
-            const reasonHtml = b.status === "rejected" && b.rejectionReason
-                ? `<div class="rejection-reason-box"><strong>거절 사유:</strong> ${b.rejectionReason}</div>`
-                : "";
+const reasonHtml = b.status === "rejected" && b.rejectionReason
+? `<div class="rejection-reason-box"><strong>거절 사유:</strong> ${b.rejectionReason}</div>`
+: "";
 
-            return `
-                <div class="booking-item">
-                    <div class="booking-details">
-                        <strong>${b.professor} 교수님</strong> <span style="color:#667eea;">[${statusLabel}]</span>
-                        <span>${b.date} ${b.time} | ${b.studentName} | ${b.major}</span><br>
-                        <span>상담 유형: ${Array.isArray(b.consultTypes) ? b.consultTypes.join(", ") : "미입력"}</span>
-                        ${reasonHtml}
-                    </div>
-                    <button class="cancel-btn" onclick="cancelBooking('${b.id}')">취소</button>
-                </div>
-            `;
-        }).join("");
+return `
+               <div class="booking-item">
+                   <div class="booking-details">
+                       <strong>${b.professor} 교수님</strong> <span style="color:#667eea;">[${statusLabel}]</span>
+                       <span>${b.date} ${b.time} | ${b.studentName} | ${b.major}</span><br>
+                       <span>상담 유형: ${Array.isArray(b.consultTypes) ? b.consultTypes.join(", ") : "미입력"}</span>
+                       ${reasonHtml}
+                   </div>
+                   <button class="cancel-btn" onclick="cancelBooking('${b.id}')">취소</button>
+               </div>
+           `;
+}).join("");
 }
 
 async function cancelBooking(id) {
-    if (!confirm("예약을 취소하시겠습니까?")) return;
+if (!confirm("예약을 취소하시겠습니까?")) return;
 
-    try {
-        await window.deleteDoc(window.doc(window.db, "bookings", id));
-        showAlert("success", "예약이 취소되었습니다.");
-        searchMyBookings();
-    } catch (error) {
-        showAlert("error", "취소 실패: " + error.message);
-    }
+try {
+await window.deleteDoc(window.doc(window.db, "bookings", id));
+showAlert("success", "예약이 취소되었습니다.");
+searchMyBookings();
+} catch (error) {
+showAlert("error", "취소 실패: " + error.message);
+}
 }
 
 async function addUnavailableTime() {
-    if (!currentAdmin) return;
+if (!currentAdmin) return;
 
-    if (currentAdmin.id === "ipp") {
-        showAdminAlert("error", "행정팀 계정은 불가능 시간을 등록할 수 없습니다.");
-        return;
-    }
+if (currentAdmin.id === "ipp") {
+showAdminAlert("error", "행정팀 계정은 불가능 시간을 등록할 수 없습니다.");
+return;
+}
 
-    const date = document.getElementById("unavailableDate").value;
-    const startTime = document.getElementById("unavailableStartTime").value;
-    const endTime = document.getElementById("unavailableEndTime").value;
+const date = document.getElementById("unavailableDate").value;
+const startTime = document.getElementById("unavailableStartTime").value;
+const endTime = document.getElementById("unavailableEndTime").value;
 
-    if (!date) {
-        showAdminAlert("error", "날짜를 선택하세요.");
-        return;
-    }
+if (!date) {
+showAdminAlert("error", "날짜를 선택하세요.");
+return;
+}
 
 const startIdx = timeSlots.indexOf(startTime);
-    const endIdx = getEndIndex(endTime);
+const endIdx = getEndIndex(endTime);
 
-    if (startIdx === -1 || endIdx === -1 || startIdx > endIdx) {
-        showAdminAlert("error", "종료 시간은 시작 시간 이후여야 합니다.");
-        return;
-    }
+if (startIdx === -1 || endIdx === -1 || startIdx > endIdx) {
+showAdminAlert("error", "종료 시간은 시작 시간 이후여야 합니다.");
+return;
+}
 
-    const times = [];
-    for (let i = startIdx; i <= endIdx; i++) {
-        times.push(timeSlots[i]);
-    }
+const times = [];
+for (let i = startIdx; i <= endIdx; i++) {
+times.push(timeSlots[i]);
+}
 
-    try {
-        await window.addDoc(window.collection(window.db, "unavailableTimes"), {
-            professor: currentAdmin.name,
-            date,
-            times,
-            startTime,
-            endTime,
-            createdAt: new Date().toISOString()
-        });
+try {
+await window.addDoc(window.collection(window.db, "unavailableTimes"), {
+professor: currentAdmin.name,
+date,
+times,
+startTime,
+endTime,
+createdAt: new Date().toISOString()
+});
 
-        showAdminAlert("success", `등록 완료 (${date})`);
-    } catch (error) {
-        showAdminAlert("error", "등록 실패: " + error.message);
-    }
+showAdminAlert("success", `등록 완료 (${date})`);
+} catch (error) {
+showAdminAlert("error", "등록 실패: " + error.message);
+}
 }
 
 function loadUnavailableList() {
-    if (!currentAdmin) return;
+if (!currentAdmin) return;
 
-    const list = document.getElementById("unavailableList");
+const list = document.getElementById("unavailableList");
 
-    if (currentAdmin.id === "ipp") {
-        list.innerHTML = '<p style="text-align:center;color:#999;">행정팀 계정은 불가능 시간 등록 대상이 아닙니다.</p>';
-        return;
-    }
+if (currentAdmin.id === "ipp") {
+list.innerHTML = '<p style="text-align:center;color:#999;">행정팀 계정은 불가능 시간 등록 대상이 아닙니다.</p>';
+return;
+}
 
-    const myUnavailable = unavailableCache.filter(u => u.professor === currentAdmin.name);
+const myUnavailable = unavailableCache.filter(u => u.professor === currentAdmin.name);
 
-    if (myUnavailable.length === 0) {
-        list.innerHTML = '<p style="text-align:center;color:#999;">등록된 불가능 시간이 없습니다.</p>';
-        return;
-    }
+if (myUnavailable.length === 0) {
+list.innerHTML = '<p style="text-align:center;color:#999;">등록된 불가능 시간이 없습니다.</p>';
+return;
+}
 
-    list.innerHTML = myUnavailable
-        .sort((a, b) => (a.date + a.startTime).localeCompare(b.date + b.startTime))
-        .map(u => `
-            <div class="unavailable-item">
-                <span><strong>${u.date}</strong> ${u.startTime}~${u.endTime}</span>
-                <button class="delete-btn" onclick="deleteUnavailableTime('${u.id}')">삭제</button>
-            </div>
-        `).join("");
+list.innerHTML = myUnavailable
+.sort((a, b) => (a.date + a.startTime).localeCompare(b.date + b.startTime))
+.map(u => `
+           <div class="unavailable-item">
+               <span><strong>${u.date}</strong> ${u.startTime}~${u.endTime}</span>
+               <button class="delete-btn" onclick="deleteUnavailableTime('${u.id}')">삭제</button>
+           </div>
+       `).join("");
 }
 async function updateBookingStatus(id, status) {
-    try {
-        const updateData = { status };
+try {
+const updateData = { status };
 
-        if (status === "rejected") {
-            const reasonInput = document.getElementById(`rejectReason_${id}`);
-            const reason = reasonInput ? reasonInput.value.trim() : "";
+if (status === "rejected") {
+const reasonInput = document.getElementById(`rejectReason_${id}`);
+const reason = reasonInput ? reasonInput.value.trim() : "";
 
-            if (!reason) {
-                showAdminAlert("error", "거절 사유를 입력하세요.");
-                return;
-            }
+if (!reason) {
+showAdminAlert("error", "거절 사유를 입력하세요.");
+return;
+}
 
-            updateData.rejectionReason = reason;
-        }
+updateData.rejectionReason = reason;
+}
 
-        if (status === "approved") {
-            updateData.rejectionReason = "";
-        }
+if (status === "approved") {
+updateData.rejectionReason = "";
+}
 
-        await window.updateDoc(window.doc(window.db, "bookings", id), updateData);
-        showAdminAlert("success", status === "approved" ? "예약이 승인되었습니다." : "예약이 거절되었습니다.");
-    } catch (error) {
-        showAdminAlert("error", "처리 실패: " + error.message);
-    }
+await window.updateDoc(window.doc(window.db, "bookings", id), updateData);
+showAdminAlert("success", status === "approved" ? "예약이 승인되었습니다." : "예약이 거절되었습니다.");
+} catch (error) {
+showAdminAlert("error", "처리 실패: " + error.message);
+}
 }
 async function deleteUnavailableTime(id) {
-    if (!confirm("삭제하시겠습니까?")) return;
+if (!confirm("삭제하시겠습니까?")) return;
 
-    try {
-        await window.deleteDoc(window.doc(window.db, "unavailableTimes", id));
-        showAdminAlert("success", "삭제되었습니다.");
-    } catch (error) {
-        showAdminAlert("error", "삭제 실패: " + error.message);
-    }
+try {
+await window.deleteDoc(window.doc(window.db, "unavailableTimes", id));
+showAdminAlert("success", "삭제되었습니다.");
+} catch (error) {
+showAdminAlert("error", "삭제 실패: " + error.message);
+}
 }
 
 async function addRecurringUnavailable() {
-    if (!currentAdmin) return;
+if (!currentAdmin) return;
 
-    if (currentAdmin.id === "ipp") {
-        showAdminAlert("error", "행정팀 계정은 정기 불가 시간을 등록할 수 없습니다.");
-        return;
-    }
+if (currentAdmin.id === "ipp") {
+showAdminAlert("error", "행정팀 계정은 정기 불가 시간을 등록할 수 없습니다.");
+return;
+}
 
-    const dayOfWeek = parseInt(document.getElementById("recurringDay").value, 10);
-    const startTime = document.getElementById("recurringStartTime").value;
-    const endTime = document.getElementById("recurringEndTime").value;
+const dayOfWeek = parseInt(document.getElementById("recurringDay").value, 10);
+const startTime = document.getElementById("recurringStartTime").value;
+const endTime = document.getElementById("recurringEndTime").value;
 
-    const startIdx = timeSlots.indexOf(startTime);
-    const endIdx = getEndIndex(endTime);
+const startIdx = timeSlots.indexOf(startTime);
+const endIdx = getEndIndex(endTime);
 
-    if (startIdx === -1 || endIdx === -1 || startIdx > endIdx) {
-        showAdminAlert("error", "종료 시간은 시작 시간 이후여야 합니다.");
-        return;
-    }
+if (startIdx === -1 || endIdx === -1 || startIdx > endIdx) {
+showAdminAlert("error", "종료 시간은 시작 시간 이후여야 합니다.");
+return;
+}
 
-    const times = [];
-    for (let i = startIdx; i <= endIdx; i++) {
-        times.push(timeSlots[i]);
-    }
+const times = [];
+for (let i = startIdx; i <= endIdx; i++) {
+times.push(timeSlots[i]);
+}
 
-    try {
-        await window.addDoc(window.collection(window.db, "recurringUnavailable"), {
-            professor: currentAdmin.name,
-            dayOfWeek,
-            times,
-            startTime,
-            endTime,
-            createdAt: new Date().toISOString()
-        });
+try {
+await window.addDoc(window.collection(window.db, "recurringUnavailable"), {
+professor: currentAdmin.name,
+dayOfWeek,
+times,
+startTime,
+endTime,
+createdAt: new Date().toISOString()
+});
 
-        showAdminAlert("success", "정기 불가 시간이 등록되었습니다.");
-    } catch (error) {
-        showAdminAlert("error", "등록 실패: " + error.message);
-    }
+showAdminAlert("success", "정기 불가 시간이 등록되었습니다.");
+} catch (error) {
+showAdminAlert("error", "등록 실패: " + error.message);
+}
 }
 
 function loadRecurringUnavailableList() {
-    if (!currentAdmin) return;
+if (!currentAdmin) return;
 
-    const list = document.getElementById("recurringUnavailableList");
-    const dayNames = ["월", "화", "수", "목", "금"];
+const list = document.getElementById("recurringUnavailableList");
+const dayNames = ["월", "화", "수", "목", "금"];
 
-    if (currentAdmin.id === "ipp") {
-        list.innerHTML = '<p style="text-align:center;color:#999;">행정팀 계정은 대상이 아닙니다.</p>';
-        return;
-    }
+if (currentAdmin.id === "ipp") {
+list.innerHTML = '<p style="text-align:center;color:#999;">행정팀 계정은 대상이 아닙니다.</p>';
+return;
+}
 
-    const myRecurring = recurringUnavailableCache.filter(r => r.professor === currentAdmin.name);
+const myRecurring = recurringUnavailableCache.filter(r => r.professor === currentAdmin.name);
 
-    if (myRecurring.length === 0) {
-        list.innerHTML = '<p style="text-align:center;color:#999;">등록된 정기 불가 시간이 없습니다.</p>';
-        return;
-    }
+if (myRecurring.length === 0) {
+list.innerHTML = '<p style="text-align:center;color:#999;">등록된 정기 불가 시간이 없습니다.</p>';
+return;
+}
 
-    list.innerHTML = myRecurring
-        .sort((a, b) => (a.dayOfWeek - b.dayOfWeek) || a.startTime.localeCompare(b.startTime))
-        .map(r => `
-            <div class="unavailable-item">
-                <span><strong>매주 ${dayNames[r.dayOfWeek]}요일</strong> ${r.startTime}~${r.endTime}</span>
-                <button class="delete-btn" onclick="deleteRecurringUnavailable('${r.id}')">삭제</button>
-            </div>
-        `).join("");
+list.innerHTML = myRecurring
+.sort((a, b) => (a.dayOfWeek - b.dayOfWeek) || a.startTime.localeCompare(b.startTime))
+.map(r => `
+           <div class="unavailable-item">
+               <span><strong>매주 ${dayNames[r.dayOfWeek]}요일</strong> ${r.startTime}~${r.endTime}</span>
+               <button class="delete-btn" onclick="deleteRecurringUnavailable('${r.id}')">삭제</button>
+           </div>
+       `).join("");
 }
 
 async function deleteRecurringUnavailable(id) {
-    if (!confirm("삭제하시겠습니까?")) return;
+if (!confirm("삭제하시겠습니까?")) return;
 
-    try {
-        await window.deleteDoc(window.doc(window.db, "recurringUnavailable", id));
-        showAdminAlert("success", "삭제되었습니다.");
-    } catch (error) {
-        showAdminAlert("error", "삭제 실패: " + error.message);
-    }
+try {
+await window.deleteDoc(window.doc(window.db, "recurringUnavailable", id));
+showAdminAlert("success", "삭제되었습니다.");
+} catch (error) {
+showAdminAlert("error", "삭제 실패: " + error.message);
 }
+}
+
+
 function loadAdminBookings() {
-    if (!currentAdmin) return;
+if (!currentAdmin) return;
 
-    const date = document.getElementById("adminDate").value;
+const date = document.getElementById("adminDate").value;
 
-    let adminBookings;
+let adminBookings;
 
-    if (currentAdmin.id === "ipp") {
-        adminBookings = date
-            ? bookingsCache.filter(b => b.date === date)
-            : [...bookingsCache];
-    } else {
-        adminBookings = bookingsCache.filter(b =>
-            b.professor === currentAdmin.name &&
-            (!date || b.date === date)
-        );
-    }
+if (currentAdmin.id === "ipp") {
+adminBookings = date
+? bookingsCache.filter(b => b.date === date)
+: [...bookingsCache];
+} else {
+adminBookings = bookingsCache.filter(b =>
+b.professor === currentAdmin.name &&
+(!date || b.date === date)
+);
+}
 
-    const list = document.getElementById("adminBookingsList");
+const list = document.getElementById("adminBookingsList");
 
-    if (adminBookings.length === 0) {
-        list.innerHTML = '<p style="text-align:center;color:#999;">예약이 없습니다.</p>';
-        return;
-    }
+if (adminBookings.length === 0) {
+list.innerHTML = '<p style="text-align:center;color:#999;">예약이 없습니다.</p>';
+return;
+}
 
-    list.innerHTML = adminBookings
-        .sort((a, b) => {
-            const dateCompare = (a.date || "").localeCompare(b.date || "");
-            if (dateCompare !== 0) return dateCompare;
+list.innerHTML = adminBookings
+.sort((a, b) => {
+const dateCompare = (a.date || "").localeCompare(b.date || "");
+if (dateCompare !== 0) return dateCompare;
 
-            const professorCompare = (a.professor || "").localeCompare(b.professor || "");
-            if (professorCompare !== 0) return professorCompare;
+const professorCompare = (a.professor || "").localeCompare(b.professor || "");
+if (professorCompare !== 0) return professorCompare;
 
-            return (a.time || "").localeCompare(b.time || "");
-        })
-        .map(b => {
-            const statusLabel = b.status === "approved" ? "✅ 승인완료"
-                : b.status === "rejected" ? "❌ 거절됨"
-                : "⏳ 승인대기중";
+return (a.time || "").localeCompare(b.time || "");
+})
+.map(b => {
+const statusLabel = b.status === "approved" ? "✅ 승인완료"
+: b.status === "rejected" ? "❌ 거절됨"
+: "⏳ 승인대기중";
 
-            const actionButtons = b.status === "pending"
-                ? `
+const actionButtons = b.status === "pending"
+? `
                     <button class="add-btn action-btn" onclick="updateBookingStatus('${b.id}', 'approved')">승인</button>
 
                    <input
@@ -1389,582 +1414,595 @@ function loadAdminBookings() {
                         placeholder="거절 사유 입력">
 
                     <button class="delete-btn action-btn" onclick="updateBookingStatus('${b.id}', 'rejected')">거절</button>
-                  `
-                 : "";
+                 `
+: "";
 
-            const reasonHtml = b.status === "rejected" && b.rejectionReason
-                ? `<div class="rejection-reason-box"><strong>거절 사유:</strong> ${b.rejectionReason}</div>`
-                : "";
+const reasonHtml = b.status === "rejected" && b.rejectionReason
+? `<div class="rejection-reason-box"><strong>거절 사유:</strong> ${b.rejectionReason}</div>`
+: "";
 
-            return `
-                <div class="booking-item">
-                    <div class="booking-details">
-                        <strong>${b.date} ${b.time} | ${b.professor} 교수님</strong> <span style="color:#667eea;">[${statusLabel}]</span>
-                        <span>${b.studentName} (${b.studentId}) | ${b.major} | ${b.phone}</span><br>
-                        <span>상담 유형: ${Array.isArray(b.consultTypes) ? b.consultTypes.join(", ") : "미입력"}</span>
-                        ${reasonHtml}
-                    </div>
-                    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px;">${actionButtons}</div>
-                </div>
-            `;
-        }).join("");
+return `
+               <div class="booking-item">
+                   <div class="booking-details">
+                       <strong>${b.date} ${b.time} | ${b.professor} 교수님</strong> <span style="color:#667eea;">[${statusLabel}]</span>
+                       <span>${b.studentName} (${b.studentId}) | ${b.major} | ${b.phone}</span><br>
+                       <span>상담 유형: ${Array.isArray(b.consultTypes) ? b.consultTypes.join(", ") : "미입력"}</span>
+                       ${reasonHtml}
+                   </div>
+                   <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px;">${actionButtons}</div>
+               </div>
+           `;
+}).join("");
 }
 
 function showAllAdminBookings() {
-    document.getElementById("adminDate").value = "";
-    loadAdminBookings();
+document.getElementById("adminDate").value = "";
+loadAdminBookings();
 }
 
 function downloadWeeklyCSV() {
-    if (!currentAdmin) return;
+if (!currentAdmin) return;
 
-    const weekStart = new Date(adminWeekStart);
-    const weekEnd = new Date(adminWeekStart);
-    weekEnd.setDate(weekEnd.getDate() + 6);
+const weekStart = new Date(adminWeekStart);
+const weekEnd = new Date(adminWeekStart);
+weekEnd.setDate(weekEnd.getDate() + 6);
 
-    const startStr = getLocalDateString(weekStart);
-    const endStr = getLocalDateString(weekEnd);
+const startStr = getLocalDateString(weekStart);
+const endStr = getLocalDateString(weekEnd);
 
-    let weeklyBookings;
+let weeklyBookings;
 
-    if (currentAdmin.id === "ipp") {
-        weeklyBookings = bookingsCache.filter(b =>
-            b.date >= startStr && b.date <= endStr
-        );
-    } else {
-        weeklyBookings = bookingsCache.filter(b =>
-            b.professor === currentAdmin.name &&
-            b.date >= startStr &&
-            b.date <= endStr
-        );
-    }
+if (currentAdmin.id === "ipp") {
+weeklyBookings = bookingsCache.filter(b =>
+b.date >= startStr && b.date <= endStr
+);
+} else {
+weeklyBookings = bookingsCache.filter(b =>
+b.professor === currentAdmin.name &&
+b.date >= startStr &&
+b.date <= endStr
+);
+}
 
-    if (weeklyBookings.length === 0) {
-        showAdminAlert("error", "이번 주 예약 데이터가 없습니다.");
-        return;
-    }
+if (weeklyBookings.length === 0) {
+showAdminAlert("error", "이번 주 예약 데이터가 없습니다.");
+return;
+}
 
-    weeklyBookings.sort((a, b) => {
-        const dateCompare = (a.date || "").localeCompare(b.date || "");
-        if (dateCompare !== 0) return dateCompare;
+weeklyBookings.sort((a, b) => {
+const dateCompare = (a.date || "").localeCompare(b.date || "");
+if (dateCompare !== 0) return dateCompare;
 
-        const timeCompare = (a.time || "").localeCompare(b.time || "");
-        if (timeCompare !== 0) return timeCompare;
+const timeCompare = (a.time || "").localeCompare(b.time || "");
+if (timeCompare !== 0) return timeCompare;
 
-        return (a.professor || "").localeCompare(b.professor || "");
-    });
+return (a.professor || "").localeCompare(b.professor || "");
+});
 
-    const headers = [
-        "교수명",
-        "날짜",
-        "시간",
-        "학번",
-        "이름",
-        "전공",
-        "연락처",
-        "상담유형",
-        "신청일시"
-    ];
+const headers = [
+"교수명",
+"날짜",
+"시간",
+"학번",
+"이름",
+"전공",
+"연락처",
+"상담유형",
+"신청일시"
+];
 
-    const rows = weeklyBookings.map(b => [
-    b.professor || "",
-    `="${b.date || ""}"`,
-    `="${b.time || ""}"`,
-    `="${b.studentId || ""}"`,
-    b.studentName || "",
-    b.major || "",
-    `="${b.phone || ""}"`,
-    Array.isArray(b.consultTypes) ? b.consultTypes.join(" / ") : "",
-    `="${b.createdAt || ""}"`
-    ]);
+const rows = weeklyBookings.map(b => [
+b.professor || "",
+`="${b.date || ""}"`,
+`="${b.time || ""}"`,
+`="${b.studentId || ""}"`,
+b.studentName || "",
+b.major || "",
+`="${b.phone || ""}"`,
+Array.isArray(b.consultTypes) ? b.consultTypes.join(" / ") : "",
+`="${b.createdAt || ""}"`
+]);
 
-    const csvContent = [
-        headers,
-        ...rows
-    ].map(row =>
-        row.map(value => `"${String(value).replace(/"/g, '""')}"`).join(",")
-    ).join("\n");
+const csvContent = [
+headers,
+...rows
+].map(row =>
+row.map(value => `"${String(value).replace(/"/g, '""')}"`).join(",")
+).join("\n");
 
-    const bom = "\uFEFF";
-    const blob = new Blob([bom + csvContent], {
-        type: "text/csv;charset=utf-8;"
-    });
+const bom = "\uFEFF";
+const blob = new Blob([bom + csvContent], {
+type: "text/csv;charset=utf-8;"
+});
 
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
+const url = URL.createObjectURL(blob);
+const a = document.createElement("a");
 
-    a.href = url;
-    a.download = `예약목록_${startStr}_${endStr}.csv`;
+a.href = url;
+a.download = `예약목록_${startStr}_${endStr}.csv`;
 
-    document.body.appendChild(a);
-    a.click();
+document.body.appendChild(a);
+a.click();
 
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+document.body.removeChild(a);
+URL.revokeObjectURL(url);
 
-    showAdminAlert("success", "이번 주 예약 목록 CSV 파일이 다운로드되었습니다.");
+showAdminAlert("success", "이번 주 예약 목록 CSV 파일이 다운로드되었습니다.");
 }
 
 function downloadAllCSV() {
-    if (!currentAdmin) return;
+if (!currentAdmin) return;
 
-    let allBookings;
+let allBookings;
 
-    if (currentAdmin.id === "ipp") {
-        allBookings = [...bookingsCache];
-    } else {
-        allBookings = bookingsCache.filter(b =>
-            b.professor === currentAdmin.name
-        );
-    }
-
-    if (allBookings.length === 0) {
-        showAdminAlert("error", "누적 예약 데이터가 없습니다.");
-        return;
-    }
-
-    allBookings.sort((a, b) => {
-        const dateCompare = (a.date || "").localeCompare(b.date || "");
-        if (dateCompare !== 0) return dateCompare;
-
-        const timeCompare = (a.time || "").localeCompare(b.time || "");
-        if (timeCompare !== 0) return timeCompare;
-
-        return (a.professor || "").localeCompare(b.professor || "");
-    });
-
-    const headers = [
-        "교수명",
-        "날짜",
-        "시간",
-        "학번",
-        "이름",
-        "전공",
-        "연락처",
-        "상담유형",
-        "신청일시"
-    ];
-
-    const rows = allBookings.map(b => [
-        b.professor || "",
-        `="${b.date || ""}"`,
-        `="${b.time || ""}"`,
-        `="${b.studentId || ""}"`,
-        b.studentName || "",
-        b.major || "",
-        `="${b.phone || ""}"`,
-        Array.isArray(b.consultTypes) ? b.consultTypes.join(" / ") : "",
-        `="${b.createdAt || ""}"`
-    ]);
-
-    const csvContent = [
-        headers,
-        ...rows
-    ].map(row =>
-        row.map(value => `"${String(value).replace(/"/g, '""')}"`).join(",")
-    ).join("\n");
-
-    const bom = "\uFEFF";
-    const blob = new Blob([bom + csvContent], {
-        type: "text/csv;charset=utf-8;"
-    });
-
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-
-    const today = getLocalDateString(new Date());
-    a.href = url;
-    a.download = `누적예약목록_${today}.csv`;
-
-    document.body.appendChild(a);
-    a.click();
-
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-
-    showAdminAlert("success", "누적 예약 목록 CSV 파일이 다운로드되었습니다.");
+if (currentAdmin.id === "ipp") {
+allBookings = [...bookingsCache];
+} else {
+allBookings = bookingsCache.filter(b =>
+b.professor === currentAdmin.name
+);
 }
 
+if (allBookings.length === 0) {
+showAdminAlert("error", "누적 예약 데이터가 없습니다.");
+return;
+}
+
+allBookings.sort((a, b) => {
+const dateCompare = (a.date || "").localeCompare(b.date || "");
+if (dateCompare !== 0) return dateCompare;
+
+const timeCompare = (a.time || "").localeCompare(b.time || "");
+if (timeCompare !== 0) return timeCompare;
+
+return (a.professor || "").localeCompare(b.professor || "");
+});
+
+const headers = [
+"교수명",
+"날짜",
+"시간",
+"학번",
+"이름",
+"전공",
+"연락처",
+"상담유형",
+"신청일시"
+];
+
+const rows = allBookings.map(b => [
+b.professor || "",
+`="${b.date || ""}"`,
+`="${b.time || ""}"`,
+`="${b.studentId || ""}"`,
+b.studentName || "",
+b.major || "",
+`="${b.phone || ""}"`,
+Array.isArray(b.consultTypes) ? b.consultTypes.join(" / ") : "",
+`="${b.createdAt || ""}"`
+]);
+
+const csvContent = [
+headers,
+...rows
+].map(row =>
+row.map(value => `"${String(value).replace(/"/g, '""')}"`).join(",")
+).join("\n");
+
+const bom = "\uFEFF";
+const blob = new Blob([bom + csvContent], {
+type: "text/csv;charset=utf-8;"
+});
+
+const url = URL.createObjectURL(blob);
+const a = document.createElement("a");
+
+const today = getLocalDateString(new Date());
+a.href = url;
+a.download = `누적예약목록_${today}.csv`;
+
+document.body.appendChild(a);
+a.click();
+
+document.body.removeChild(a);
+URL.revokeObjectURL(url);
+
+showAdminAlert("success", "누적 예약 목록 CSV 파일이 다운로드되었습니다.");
+}
+
+
 function initSchedule() {
-    const grid = document.getElementById("scheduleGrid");
-    grid.innerHTML = "";
+const grid = document.getElementById("scheduleGrid");
+grid.innerHTML = "";
 
-    const professor = document.getElementById("professor").value;
+const professor = document.getElementById("professor").value;
 
-    if (!professor) {
-        timeSlots.forEach(time => {
-            grid.appendChild(createCell("time-slot", time));
-            for (let day = 0; day < 7; day++) {
-                grid.appendChild(createCell("slot-cell unavailable", "교수 선택 필요"));
-            }
-        });
-        return;
-    }
+if (!professor) {
+timeSlots.forEach(time => {
+grid.appendChild(createCell("time-slot", time));
+for (let day = 0; day < 7; day++) {
+const date = new Date(currentWeekStart);
+date.setDate(date.getDate() + day);
+const dateStr = getLocalDateString(date);
+grid.appendChild(isPastDate(dateStr)
+    ? createCell("slot-cell past-closed", "마감")
+    : createCell("slot-cell unavailable", "교수 선택 필요"));
+}
+});
+return;
+}
 
-    timeSlots.forEach(time => {
-        grid.appendChild(createCell("time-slot", time));
+timeSlots.forEach(time => {
+grid.appendChild(createCell("time-slot", time));
 
-        for (let day = 0; day < 7; day++) {
-            const date = new Date(currentWeekStart);
-            date.setDate(date.getDate() + day);
-            const dateStr = getLocalDateString(date);
+for (let day = 0; day < 7; day++) {
+const date = new Date(currentWeekStart);
+date.setDate(date.getDate() + day);
+const dateStr = getLocalDateString(date);
 
-            const cell = document.createElement("div");
-            cell.className = "slot-cell";
+const cell = document.createElement("div");
+cell.className = "slot-cell";
 
-            if (day >= 5 || holidays.includes(dateStr)) {
-                cell.classList.add("unavailable");
-                cell.textContent = holidays.includes(dateStr) ? "공휴일" : "휴무";
-            } else {
-                const booking = bookingsCache.find(b =>
-                    b.date === dateStr &&
-                    b.time === time &&
-                    b.professor === professor &&
-                    b.status !== "rejected"
-                );
+if (isPastDate(dateStr)) {
+cell.classList.add("past-closed");
+cell.textContent = "마감";
+} else if (day >= 5 || holidays.includes(dateStr)) {
+cell.classList.add("unavailable");
+cell.textContent = holidays.includes(dateStr) ? "공휴일" : "휴무";
+} else {
+const booking = bookingsCache.find(b =>
+b.date === dateStr &&
+b.time === time &&
+b.professor === professor &&
+b.status !== "rejected"
+);
 
-                if (booking) {
-                    if (booking.status === "approved") {
-                        cell.classList.add("booked");
-                        cell.textContent = "예약완료";
-                    } else {
-                        cell.classList.add("unavailable");
-                        cell.textContent = "승인대기중";
-                    }
-                } else {
-                    const jsDay = date.getDay();
-                    const dayOfWeek = jsDay === 0 ? 6 : jsDay - 1;
+if (booking) {
+if (booking.status === "approved") {
+cell.classList.add("booked");
+cell.textContent = "예약완료";
+} else {
+cell.classList.add("unavailable");
+cell.textContent = "승인대기중";
+}
+} else {
+const jsDay = date.getDay();
+const dayOfWeek = jsDay === 0 ? 6 : jsDay - 1;
 
-                    const unavailable = unavailableCache.some(u =>
-                        u.professor === professor &&
-                        u.date === dateStr &&
-                        Array.isArray(u.times) &&
-                        u.times.includes(time)
-                    ) || recurringUnavailableCache.some(r =>
-                        r.professor === professor &&
-                        r.dayOfWeek === dayOfWeek &&
-                        Array.isArray(r.times) &&
-                        r.times.includes(time)
-                    );
-                    
-                    if (unavailable) {
-                        cell.classList.add("unavailable");
-                        cell.textContent = "불가";
-                    } else {
-                        cell.textContent = "예약 가능";
-                        cell.onclick = () => selectSlot(dateStr, time, cell);
-                    }
-                }
-            }
+const unavailable = unavailableCache.some(u =>
+u.professor === professor &&
+u.date === dateStr &&
+Array.isArray(u.times) &&
+u.times.includes(time)
+) || recurringUnavailableCache.some(r =>
+r.professor === professor &&
+r.dayOfWeek === dayOfWeek &&
+Array.isArray(r.times) &&
+r.times.includes(time)
+);
 
-            grid.appendChild(cell);
-        }
-    });
+if (unavailable) {
+cell.classList.add("unavailable");
+cell.textContent = "불가";
+} else {
+cell.textContent = "예약 가능";
+cell.onclick = () => selectSlot(dateStr, time, cell);
+}
+}
+}
+
+grid.appendChild(cell);
+}
+});
 }
 
 function initAdminSchedule() {
-    if (!currentAdmin) return;
+if (!currentAdmin) return;
 
-    const grid = document.getElementById("adminScheduleGrid");
-    grid.innerHTML = "";
+const grid = document.getElementById("adminScheduleGrid");
+grid.innerHTML = "";
 
-    timeSlots.forEach(time => {
-        grid.appendChild(createCell("time-slot", time));
+timeSlots.forEach(time => {
+grid.appendChild(createCell("time-slot", time));
 
-        for (let day = 0; day < 7; day++) {
-            const date = new Date(adminWeekStart);
-            date.setDate(date.getDate() + day);
-            const dateStr = getLocalDateString(date);
+for (let day = 0; day < 7; day++) {
+const date = new Date(adminWeekStart);
+date.setDate(date.getDate() + day);
+const dateStr = getLocalDateString(date);
 
-            const cell = document.createElement("div");
-            cell.className = "admin-slot-cell";
+const cell = document.createElement("div");
+cell.className = "admin-slot-cell";
 
-            if (day >= 5 || holidays.includes(dateStr)) {
-                cell.classList.add("unavailable");
-                cell.textContent = holidays.includes(dateStr) ? "공휴일" : "휴무";
-            } else {
-                let bookings;
+if (day >= 5 || holidays.includes(dateStr)) {
+cell.classList.add("unavailable");
+cell.textContent = holidays.includes(dateStr) ? "공휴일" : "휴무";
+} else {
+let bookings;
 
-                if (currentAdmin.id === "ipp") {
-                    bookings = bookingsCache.filter(b =>
-                        b.date === dateStr &&
-                        b.time === time
-                    );
-                } else {
-                    bookings = bookingsCache.filter(b =>
-                        b.date === dateStr &&
-                        b.time === time &&
-                        b.professor === currentAdmin.name
-                    );
-                }
+if (currentAdmin.id === "ipp") {
+bookings = bookingsCache.filter(b =>
+b.date === dateStr &&
+b.time === time
+);
+} else {
+bookings = bookingsCache.filter(b =>
+b.date === dateStr &&
+b.time === time &&
+b.professor === currentAdmin.name
+);
+}
 
-                if (bookings.length > 0) {
-                    cell.classList.add("booked");
+if (bookings.length > 0) {
+cell.classList.add("booked");
 
-                    cell.innerHTML = bookings.map(b => {
-                        const statusLabel = b.status === "approved" ? "✅" : b.status === "rejected" ? "❌" : "⏳";
-                        return `
-                            <div style="
-                                border-bottom: 1px solid #c9d8ff;
-                                padding: 3px 0;
-                                width: 100%;
-                                text-align: center;
-                            ">
-                                <div style="font-weight:600;color:#667eea;">${statusLabel} ${b.studentName}</div>
-                                <div style="font-size:10px;color:#666;">${b.studentId}</div>
-                                <div style="font-size:10px;color:#666;">${b.professor || ""}</div>
-                            </div>
-                        `;
-                    }).join("");
-                } else {
-                    let unavailable = false;
+cell.innerHTML = bookings.map(b => {
+const statusLabel = b.status === "approved" ? "✅" : b.status === "rejected" ? "❌" : "⏳";
+return `
+                           <div style="
+                               border-bottom: 1px solid #c9d8ff;
+                               padding: 3px 0;
+                               width: 100%;
+                               text-align: center;
+                           ">
+                               <div style="font-weight:600;color:#667eea;">${statusLabel} ${b.studentName}</div>
+                               <div style="font-size:10px;color:#666;">${b.studentId}</div>
+                               <div style="font-size:10px;color:#666;">${b.professor || ""}</div>
+                           </div>
+                       `;
+}).join("");
+} else {
+let unavailable = false;
 
-                    if (currentAdmin.id !== "ipp") {
-                        const jsDay = date.getDay();
-                        const dayOfWeek = jsDay === 0 ? 6 : jsDay - 1;
+if (currentAdmin.id !== "ipp") {
+const jsDay = date.getDay();
+const dayOfWeek = jsDay === 0 ? 6 : jsDay - 1;
 
-                        unavailable = unavailableCache.some(u =>
-                            u.professor === currentAdmin.name &&
-                            u.date === dateStr &&
-                            Array.isArray(u.times) &&
-                            u.times.includes(time)
-                        ) || recurringUnavailableCache.some(r =>
-                            r.professor === currentAdmin.name &&
-                            r.dayOfWeek === dayOfWeek &&
-                            Array.isArray(r.times) &&
-                            r.times.includes(time)
-                        );
-                    }
+unavailable = unavailableCache.some(u =>
+u.professor === currentAdmin.name &&
+u.date === dateStr &&
+Array.isArray(u.times) &&
+u.times.includes(time)
+) || recurringUnavailableCache.some(r =>
+r.professor === currentAdmin.name &&
+r.dayOfWeek === dayOfWeek &&
+Array.isArray(r.times) &&
+r.times.includes(time)
+);
+}
 
-                    if (unavailable) {
-                        cell.classList.add("unavailable");
-                        cell.textContent = "불가";
-                    } else {
-                        cell.textContent = "-";
-                    }
-                }
-            }
+if (unavailable) {
+cell.classList.add("unavailable");
+cell.textContent = "불가";
+} else {
+cell.textContent = "-";
+}
+}
+}
 
-            grid.appendChild(cell);
-        }
-    });
+grid.appendChild(cell);
+}
+});
 }
 
 function createCell(className, text) {
-    const cell = document.createElement("div");
-    cell.className = className;
-    cell.textContent = text;
-    return cell;
+const cell = document.createElement("div");
+cell.className = className;
+cell.textContent = text;
+return cell;
 }
 
 function selectSlot(date, time, cell) {
-    document.querySelectorAll(".slot-cell.selected").forEach(c => {
-        c.classList.remove("selected");
-        if (!c.classList.contains("booked") && !c.classList.contains("unavailable")) {
-            c.textContent = "예약 가능";
-        }
-    });
+if (isPastDate(date)) {
+    showAlert("error", "지난 날짜에는 예약할 수 없습니다.");
+    return;
+}
+document.querySelectorAll(".slot-cell.selected").forEach(c => {
+c.classList.remove("selected");
+if (!c.classList.contains("booked") && !c.classList.contains("unavailable")) {
+c.textContent = "예약 가능";
+}
+});
 
-    cell.classList.add("selected");
-    cell.textContent = "선택됨";
-    selectedSlot = { date, time };
-    document.getElementById("submitBtn").disabled = false;
+cell.classList.add("selected");
+cell.textContent = "선택됨";
+selectedSlot = { date, time };
+document.getElementById("submitBtn").disabled = false;
 }
 
 function onProfessorChange() {
-    selectedSlot = null;
-    document.getElementById("submitBtn").disabled = true;
-    initSchedule();
+selectedSlot = null;
+document.getElementById("submitBtn").disabled = true;
+initSchedule();
 }
 
 function adminLogin() {
-    const id = document.getElementById("adminId").value.trim();
-    const pw = document.getElementById("adminPw").value.trim();
+const id = document.getElementById("adminId").value.trim();
+const pw = document.getElementById("adminPw").value.trim();
 
-    if (!adminAccounts[id] || adminAccounts[id].password !== pw) {
-        showLoginAlert("error", "로그인 실패");
-        return;
-    }
+if (!adminAccounts[id] || adminAccounts[id].password !== pw) {
+showLoginAlert("error", "로그인 실패");
+return;
+}
 
-    currentAdmin = { id, name: adminAccounts[id].name };
+currentAdmin = { id, name: adminAccounts[id].name };
 
-    document.getElementById("loginForm").style.display = "none";
-    document.getElementById("adminPanel").style.display = "block";
-    document.getElementById("adminName").textContent = currentAdmin.name;
+document.getElementById("loginForm").style.display = "none";
+document.getElementById("adminPanel").style.display = "block";
+document.getElementById("adminName").textContent = currentAdmin.name;
 
-    updateAdminWeekHeader();
-    initAdminSchedule();
-    loadUnavailableList();
-    loadRecurringUnavailableList();
+updateAdminWeekHeader();
+initAdminSchedule();
+loadUnavailableList();
+loadRecurringUnavailableList();
 
-    document.getElementById("adminDate").value = "";
-    loadAdminBookings();
+document.getElementById("adminDate").value = "";
+loadAdminBookings();
 }
 
 function adminLogout() {
-    currentAdmin = null;
+currentAdmin = null;
 
-    document.getElementById("loginForm").style.display = "block";
-    document.getElementById("adminPanel").style.display = "none";
-    document.getElementById("adminId").value = "";
-    document.getElementById("adminPw").value = "";
+document.getElementById("loginForm").style.display = "block";
+document.getElementById("adminPanel").style.display = "none";
+document.getElementById("adminId").value = "";
+document.getElementById("adminPw").value = "";
 }
 
 function switchTab(tabName, button) {
-    document.querySelectorAll(".tab-content").forEach(t => t.classList.remove("active"));
-    document.querySelectorAll(".nav-tab").forEach(t => t.classList.remove("active"));
+document.querySelectorAll(".tab-content").forEach(t => t.classList.remove("active"));
+document.querySelectorAll(".nav-tab").forEach(t => t.classList.remove("active"));
 
-    document.getElementById(tabName).classList.add("active");
+document.getElementById(tabName).classList.add("active");
 
-    if (button) {
-        button.classList.add("active");
-    }
+if (button) {
+button.classList.add("active");
+}
 
-    if (tabName === "booking") {
-        initSchedule();
-    }
+if (tabName === "booking") {
+initSchedule();
+}
 
-    if (tabName === "professorLogin" && currentAdmin) {
-        initAdminSchedule();
-        loadUnavailableList();
-    }
+if (tabName === "professorLogin" && currentAdmin) {
+initAdminSchedule();
+loadUnavailableList();
+}
 }
 
 function updateWeekHeader() {
-    const header = document.getElementById("weekHeader");
-    const dayNames = ["월", "화", "수", "목", "금", "토(휴무)", "일(휴무)"];
+const header = document.getElementById("weekHeader");
+const dayNames = ["월", "화", "수", "목", "금", "토(휴무)", "일(휴무)"];
 
-    let html = '<div class="week-day time-label">시간</div>';
+let html = '<div class="week-day time-label">시간</div>';
 
-    for (let i = 0; i < 7; i++) {
-        const date = new Date(currentWeekStart);
-        date.setDate(date.getDate() + i);
+for (let i = 0; i < 7; i++) {
+const date = new Date(currentWeekStart);
+date.setDate(date.getDate() + i);
 
-        html += `
-            <div class="week-day ${i >= 5 ? "weekend" : ""}">
-                ${dayNames[i]}<br>(${date.getMonth() + 1}/${date.getDate()})
-            </div>
-        `;
-    }
+html += `
+           <div class="week-day ${i >= 5 ? "weekend" : ""}">
+               ${dayNames[i]}<br>(${date.getMonth() + 1}/${date.getDate()})
+           </div>
+       `;
+}
 
-    header.innerHTML = html;
-    document.getElementById("currentWeek").textContent = getWeekInfo(currentWeekStart);
+header.innerHTML = html;
+document.getElementById("currentWeek").textContent = getWeekInfo(currentWeekStart);
 }
 
 function updateAdminWeekHeader() {
-    const header = document.getElementById("adminWeekHeader");
-    const dayNames = ["월", "화", "수", "목", "금", "토(휴무)", "일(휴무)"];
+const header = document.getElementById("adminWeekHeader");
+const dayNames = ["월", "화", "수", "목", "금", "토(휴무)", "일(휴무)"];
 
-    let html = '<div class="week-day time-label">시간</div>';
+let html = '<div class="week-day time-label">시간</div>';
 
-    for (let i = 0; i < 7; i++) {
-        const date = new Date(adminWeekStart);
-        date.setDate(date.getDate() + i);
+for (let i = 0; i < 7; i++) {
+const date = new Date(adminWeekStart);
+date.setDate(date.getDate() + i);
 
-        html += `
-            <div class="week-day ${i >= 5 ? "weekend" : ""}">
-                ${dayNames[i]}<br>(${date.getMonth() + 1}/${date.getDate()})
-            </div>
-        `;
-    }
+html += `
+           <div class="week-day ${i >= 5 ? "weekend" : ""}">
+               ${dayNames[i]}<br>(${date.getMonth() + 1}/${date.getDate()})
+           </div>
+       `;
+}
 
-    header.innerHTML = html;
-    document.getElementById("adminCurrentWeek").textContent = getWeekInfo(adminWeekStart);
+header.innerHTML = html;
+document.getElementById("adminCurrentWeek").textContent = getWeekInfo(adminWeekStart);
 }
 
 function getWeekInfo(date) {
-    const year = date.getFullYear();
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
-    const firstDayOfMonth = new Date(year, month - 1, 1);
-    const weekOfMonth = Math.ceil((day + firstDayOfMonth.getDay()) / 7);
-    return `${year}년 ${month}월 ${weekOfMonth}주차`;
+const year = date.getFullYear();
+const month = date.getMonth() + 1;
+const day = date.getDate();
+const firstDayOfMonth = new Date(year, month - 1, 1);
+const weekOfMonth = Math.ceil((day + firstDayOfMonth.getDay()) / 7);
+return `${year}년 ${month}월 ${weekOfMonth}주차`;
 }
 
 function previousWeek() {
-    currentWeekStart.setDate(currentWeekStart.getDate() - 7);
-    updateWeekHeader();
-    initSchedule();
+currentWeekStart.setDate(currentWeekStart.getDate() - 7);
+updateWeekHeader();
+initSchedule();
 }
 
 function nextWeek() {
-    currentWeekStart.setDate(currentWeekStart.getDate() + 7);
-    updateWeekHeader();
-    initSchedule();
+currentWeekStart.setDate(currentWeekStart.getDate() + 7);
+updateWeekHeader();
+initSchedule();
 }
 
 function adminPreviousWeek() {
-    adminWeekStart.setDate(adminWeekStart.getDate() - 7);
-    updateAdminWeekHeader();
-    initAdminSchedule();
+adminWeekStart.setDate(adminWeekStart.getDate() - 7);
+updateAdminWeekHeader();
+initAdminSchedule();
 }
 
 function adminNextWeek() {
-    adminWeekStart.setDate(adminWeekStart.getDate() + 7);
-    updateAdminWeekHeader();
-    initAdminSchedule();
+adminWeekStart.setDate(adminWeekStart.getDate() + 7);
+updateAdminWeekHeader();
+initAdminSchedule();
 }
 
 function showBookingCompleteModal(date, time, professor) {
-    const modal = document.getElementById("bookingCompleteModal");
-    const info = document.getElementById("bookingCompleteInfo");
+const modal = document.getElementById("bookingCompleteModal");
+const info = document.getElementById("bookingCompleteInfo");
 
-    info.innerHTML = `
-        <div><strong>날짜:</strong> ${date}</div>
-        <div><strong>시간:</strong> ${time}</div>
-        <div><strong>담당 교수:</strong> ${professor} 교수님</div>
-    `;
+info.innerHTML = `
+       <div><strong>날짜:</strong> ${date}</div>
+       <div><strong>시간:</strong> ${time}</div>
+       <div><strong>담당 교수:</strong> ${professor} 교수님</div>
+   `;
 
-    modal.style.display = "flex";
+modal.style.display = "flex";
 }
 
 function closeBookingCompleteModal() {
-    document.getElementById("bookingCompleteModal").style.display = "none";
+document.getElementById("bookingCompleteModal").style.display = "none";
 }
 
 function showAlert(type, message) {
-    const alertBox = document.getElementById("alert");
-    alertBox.className = `alert ${type}`;
-    alertBox.innerHTML = message;
-    alertBox.style.display = "block";
+const alertBox = document.getElementById("alert");
+alertBox.className = `alert ${type}`;
+alertBox.innerHTML = message;
+alertBox.style.display = "block";
 
-    setTimeout(() => {
-        alertBox.style.display = "none";
-    }, 5000);
+setTimeout(() => {
+alertBox.style.display = "none";
+}, 5000);
 }
 
 function showAdminAlert(type, message) {
-    const alertBox = document.getElementById("adminAlert");
-    alertBox.className = `alert ${type}`;
-    alertBox.innerHTML = message;
-    alertBox.style.display = "block";
+const alertBox = document.getElementById("adminAlert");
+alertBox.className = `alert ${type}`;
+alertBox.innerHTML = message;
+alertBox.style.display = "block";
 
-    setTimeout(() => {
-        alertBox.style.display = "none";
-    }, 3000);
+setTimeout(() => {
+alertBox.style.display = "none";
+}, 3000);
 }
 
 function showLoginAlert(type, message) {
-    const alertBox = document.getElementById("loginAlert");
-    alertBox.className = `alert ${type}`;
-    alertBox.innerHTML = message;
-    alertBox.style.display = "block";
+const alertBox = document.getElementById("loginAlert");
+alertBox.className = `alert ${type}`;
+alertBox.innerHTML = message;
+alertBox.style.display = "block";
 
-    setTimeout(() => {
-        alertBox.style.display = "none";
-    }, 5000);
+setTimeout(() => {
+alertBox.style.display = "none";
+}, 5000);
 }
 
 window.onload = () => {
-    updateWeekHeader();
-    updateAdminWeekHeader();
-    initSchedule();
+updateWeekHeader();
+updateAdminWeekHeader();
+initSchedule();
 
-    setTimeout(() => {
-        if (window.db) {
-            initRealtimeListeners();
-        }
-    }, 1000);
+setTimeout(() => {
+if (window.db) {
+initRealtimeListeners();
+}
+}, 1000);
 };
 </script>
 </body>
