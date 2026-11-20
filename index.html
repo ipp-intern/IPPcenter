@@ -583,6 +583,20 @@ flex-wrap: wrap;
 width: 100%;
 }
 }
+
+/* 개인정보 동의 전 예약 입력/시간표 잠금 */
+.privacy-consent-box { margin: 22px 0 28px; padding: 22px; background: #f8f9ff; border: 2px solid #dce1ff; border-radius: 12px; line-height: 1.7; color: #333; }
+.privacy-consent-box h3 { color: #667eea; margin-bottom: 12px; font-size: 18px; }
+.privacy-consent-box .privacy-intro { margin-bottom: 12px; font-size: 14px; }
+.privacy-consent-box .privacy-clause { margin: 12px 0; font-size: 14px; }
+.privacy-consent-box .privacy-clause strong { display: block; margin-bottom: 3px; }
+.privacy-consent-choices { display: flex; gap: 24px; flex-wrap: wrap; border-top: 1px solid #dce1ff; padding-top: 14px; margin-top: 16px; }
+.privacy-consent-choices label { display: inline-flex; align-items: center; gap: 7px; cursor: pointer; font-weight: 600; }
+.privacy-consent-choices input { width: 17px; height: 17px; accent-color: #667eea; }
+.privacy-consent-help { font-size: 13px; color: #a54b37; margin-top: 10px; }
+.booking-locked { opacity: 0.48; }
+.booking-locked input, .booking-locked select, .booking-locked button { cursor: not-allowed; }
+.booking-locked .slot-cell { pointer-events: none; cursor: not-allowed; }
 </style>
 </head>
 
@@ -623,6 +637,22 @@ width: 100%;
 
 <div id="alert" class="alert"></div>
 
+<section class="privacy-consent-box" aria-labelledby="privacyConsentTitle">
+<h3 id="privacyConsentTitle">🔒 개인정보 수집 및 이용 동의(필수)</h3>
+<p class="privacy-intro">동국대학교 현장실습지원센터 및 IPP사업단은 학생 상담 신청 및 운영을 위하여 다음과 같이 개인정보를 수집·이용하고자 합니다.</p>
+<div class="privacy-clause"><strong>1. 수집·이용 목적</strong>학생 상담 신청 접수(학번, 이름, 학과), 상담 일정 조율(연락처), 상담 진행 및 상담 이력 관리</div>
+<div class="privacy-clause"><strong>2. 수집 항목</strong>학번, 성명, 소속 학과, 연락처, 희망 상담 교수, 상담 희망 일시, 상담 분야 및 상담 신청 내용 등</div>
+<div class="privacy-clause"><strong>3. 보유 및 이용 기간</strong>상담 목적 달성 후 관련 규정 및 개인정보처리방침에 따른 보유기간까지(이후 파기)</div>
+<div class="privacy-clause"><strong>4. 동의 거부 권리</strong>개인정보 수집·이용에 대한 동의를 거부할 권리가 있습니다. 다만, 필수 항목에 대한 동의를 거부할 경우 상담 신청이 제한될 수 있습니다.</div>
+<div class="privacy-consent-choices" role="radiogroup" aria-label="개인정보 수집 및 이용 동의 여부">
+<label><input type="radio" name="privacyConsent" value="yes" onchange="updatePrivacyConsent()"> 예 (동의)</label>
+<label><input type="radio" name="privacyConsent" value="no" onchange="updatePrivacyConsent()"> 아니오 (미동의)</label>
+</div>
+<p class="privacy-consent-help" id="privacyConsentHelp">'예'를 선택해야 예약자 정보 입력 및 상담 시간 선택이 가능합니다.</p>
+</section>
+
+<div id="bookingInputSection" class="booking-locked" aria-disabled="true">
+<fieldset id="bookingInputFieldset" disabled style="border:0; padding:0; margin:0; min-width:0;">
 <div class="form-section">
 <h3>1️⃣ 예약자 정보 입력</h3>
 
@@ -640,22 +670,22 @@ width: 100%;
 
 <div class="form-group">
 <label>학번 *</label>
-<input type="text" id="studentId" placeholder="예: 20201234">
+<input type="text" id="studentId" placeholder="예: 2021110802">
 </div>
 
 <div class="form-group">
 <label>이름 *</label>
-<input type="text" id="studentName" placeholder="김동국">
+<input type="text" id="studentName" placeholder="박종빈">
 </div>
 
 <div class="form-group">
 <label>전공 *</label>
-<input type="text" id="major" placeholder="컴퓨터공학과">
+<input type="text" id="major" placeholder="전자전기공학부">
 </div>
 
 <div class="form-group">
 <label>연락처 *</label>
-<input type="tel" id="phone" placeholder="010-1234-5678">
+<input type="tel" id="phone" placeholder="010-9475-9249">
 </div>
 
 <div class="form-group consult-type-row">
@@ -695,6 +725,9 @@ width: 100%;
 <div class="week-header" id="weekHeader"></div>
 <div id="scheduleGrid" class="schedule-grid"></div>
 </div>
+</div>
+
+</fieldset>
 </div>
 
 <button class="submit-btn" onclick="submitBooking()" id="submitBtn" disabled>예약 신청하기</button>
@@ -916,6 +949,7 @@ width: 100%;
 </div>
 </div>
 
+
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import {
@@ -1046,7 +1080,35 @@ loadRecurringUnavailableList();
 });
 }
 
+function hasPrivacyConsent() {
+return document.querySelector('input[name="privacyConsent"]:checked')?.value === "yes";
+}
+
+function updatePrivacyConsent() {
+const agreed = hasPrivacyConsent();
+const section = document.getElementById("bookingInputSection");
+const fieldset = document.getElementById("bookingInputFieldset");
+const submitBtn = document.getElementById("submitBtn");
+fieldset.disabled = !agreed;
+section.classList.toggle("booking-locked", !agreed);
+section.setAttribute("aria-disabled", String(!agreed));
+document.getElementById("privacyConsentHelp").textContent = agreed
+? "동의가 완료되었습니다. 예약자 정보를 입력하고 상담 시간을 선택하세요."
+: "'예'를 선택해야 예약자 정보 입력 및 상담 시간 선택이 가능합니다.";
+if (!agreed) {
+selectedSlot = null;
+submitBtn.disabled = true;
+initSchedule();
+} else {
+submitBtn.disabled = !selectedSlot;
+}
+}
+
 async function submitBooking() {
+if (!hasPrivacyConsent()) {
+showAlert("error", "개인정보 수집 및 이용에 동의해야 상담을 신청할 수 있습니다.");
+return;
+}
 const professor = document.getElementById("professor").value;
 const studentId = document.getElementById("studentId").value.trim();
 const studentName = document.getElementById("studentName").value.trim();
@@ -1102,6 +1164,9 @@ createdAt: new Date().toISOString()
 });
 
 showBookingCompleteModal(selectedSlot.date, selectedSlot.time, professor);
+
+document.querySelectorAll('input[name="privacyConsent"]').forEach(radio => { radio.checked = false; });
+updatePrivacyConsent();
 
 document.getElementById("studentId").value = "";
 document.getElementById("studentName").value = "";
@@ -1793,6 +1858,7 @@ return cell;
 }
 
 function selectSlot(date, time, cell) {
+if (!hasPrivacyConsent()) return;
 if (isPastDate(date)) {
     showAlert("error", "지난 날짜에는 예약할 수 없습니다.");
     return;
@@ -1995,6 +2061,7 @@ alertBox.style.display = "none";
 }
 
 window.onload = () => {
+updatePrivacyConsent();
 updateWeekHeader();
 updateAdminWeekHeader();
 initSchedule();
